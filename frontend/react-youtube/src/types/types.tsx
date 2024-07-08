@@ -28,7 +28,6 @@ export type LoginData = {
 
 export type LoginProps = {
     onLogin: (data: LoginData, rememberMe: boolean) => void
-    isLogoVisible: boolean
 }
 
 export type SignupData = {
@@ -48,10 +47,26 @@ export type HomeProps = {
     username: string
 }
 
+export type VideoCardProps = {
+    video: string
+    id: string
+    snippet: {}
+}
+
 export type searchData = {
-    kind: string
+    id: {
+        videoId: string;
+    };
     snippet: {
-        description: string
+        title: string;
+        description: string;
+        thumbnails: {
+            high: {
+                url: string;
+            }
+        }
+        channelTitle: string;
+        publishTime: string;
     }
 }
 

@@ -1,6 +1,7 @@
 import { VideosProps, searchData } from "../types/types"
 import { useState, useEffect } from "react";
 import { fetchApi } from '../utils/fetchApi'
+import { VideoCard } from '../components'
 
 const Videos = ({ selectedCategory }: VideosProps) => {
     const [videos, setVideos] = useState<searchData[]>([]);
@@ -20,13 +21,13 @@ const Videos = ({ selectedCategory }: VideosProps) => {
                     </span>
                 </h1>
             </div>
-            {/* <div>
-                {videos.map((video, index) => (
+            <div>
+                {videos.map((item, index) => (
                     <div key={index}>
-                        <p>{video.snippet.description}</p>
+                        {item.id.videoId && <VideoCard  />}
                     </div>
                 ))}
-            </div> */}
+            </div>
         </section>
     )
 }
