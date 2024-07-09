@@ -1,35 +1,38 @@
-import { VideosProps, searchData } from "../types/types"
-import { useState, useEffect } from "react";
-import { fetchApi } from '../utils/fetchApi'
-import { VideoCard } from '../components'
+import { searchData } from "../types/types";
+import { VideoCard, ChannelCard } from './';
 
-const Videos = ({ selectedCategory }: VideosProps) => {
-    const [videos, setVideos] = useState<searchData[]>([]);
-    useEffect(() => {
-        fetchApi(`search?q=${selectedCategory}&part=snippet`)
-            .then((data) => setVideos(data.items))
-    }, [selectedCategory]);
-    console.log(videos)
-
-    return (
-        <section>
-            <div className="font-semibold text-[1.2rem] md:text-[1.5rem] mt-6 md:mt-2 ml-4">
-                <h1 className="mr-1">
-                    {selectedCategory}
-                    <span className="text-red ml-1">
-                        Videos
-                    </span>
-                </h1>
-            </div>
-            <div>
-                {videos.map((item, index) => (
-                    <div key={index}>
-                        {item.id.videoId && <VideoCard  />}
-                    </div>
-                ))}
-            </div>
-        </section>
-    )
+type Videosprops = {
+	videos: searchData[];
 }
 
-export default Videos
+const Videos = ({ videos }: Videosprops) => {
+	console.log(videos);
+
+	// Add a check to ensure videos is defined and is an array
+	if (!Array.isArray(videos)) {
+		return <div className="pl-4">No videos available</div>;
+	}
+
+	return (
+		<div className="px-4 gap-4 grid grid-cols-dynamic">
+			{videos.map((item, idx) => {
+				if (item.id.videoId) {
+					return (
+						<div key={idx} className="mb-5">
+							<VideoCard video={item} />
+						</div>
+					);
+				} else if (item.id.channelId) {
+					return (
+						<div key={idx} className="mb-5">
+							<ChannelCard channelDetail={item} />
+						</div>
+					);
+				}
+				return null; // Skip rendering if neither videoId not channelId exists
+			})}
+		</div>
+	);
+}
+
+export default Videos;

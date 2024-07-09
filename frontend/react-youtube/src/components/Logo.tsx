@@ -8,7 +8,7 @@ const Logo = ({isLogoVisible}: LogoProps) => {
             {isLogoVisible && (
                 <Link to="/" className='flex items-center'>
                     <img src={youtubeIcon} alt="Youtube logo" className='max-w-[2.2rem]' />
-                    <p className={`text-[.9rem] font-medium ml-1 `}>
+                    <p className={`font-medium ml-1 `}>
                         VidTube
                     </p>
                 </Link>

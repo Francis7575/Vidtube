@@ -1,7 +1,7 @@
 import Home from './pages/Home'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
-import { Login, Signup, Forgotpassword } from './components'
+import { Login, Signup, Forgotpassword, VideoDetail, ChannelDetail } from './components'
 import { LoginData } from './types/types'
 
 const App = () => {
@@ -13,7 +13,9 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Home loggedIn={loggedIn} onLogout={handleLogout} username={username}/>} />
+      <Route path="/" element={<Home loggedIn={loggedIn} onLogout={handleLogout} username={username} />} />
+      <Route path="/video/:id" element={<VideoDetail />} />
+      <Route path="/channel/:id" element={<ChannelDetail />} />
       <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login onLogin={handleLoginWrapper} />} />
       <Route path="/forgot-password" element={loggedIn ? <Navigate to="/" /> : <Forgotpassword />} />
       <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Signup onSignup={handleSignup} />} />

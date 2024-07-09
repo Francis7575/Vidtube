@@ -8,23 +8,26 @@ const Home = ({ loggedIn, onLogout, username }: HomeProps) => {
     const [isSearchVisible, setIsSearchVisible] = useState<boolean>(false);
     const [isUserOptionsVisible, setUserOptionsVisible] = useState(false);
 
+
     const handleSearchClick = () => {
-        setLogoVisible(false);
-        setIsSearchVisible(true)
         setInputVisible(true);
-        setUserOptionsVisible(false);  // Hide user options when search is active
-    }
+        setLogoVisible(false);
+        setIsSearchVisible(true);
+        setUserOptionsVisible(false); // Hide user options when search is active
+        setInputVisible(true);
+    };
 
     const handleGoBackClick = () => {
-        setLogoVisible(true)
-        setIsSearchVisible(false)
-        setInputVisible(false)
+        setInputVisible(true);
+        setLogoVisible(true);
+        setIsSearchVisible(false);
+        setInputVisible(false);
         setUserOptionsVisible(false);
-    }
+    };
 
     const handleUserIconClick = () => {
         setUserOptionsVisible((prevState) => !prevState);
-    }
+    };
 
     return (
         <>
@@ -39,7 +42,7 @@ const Home = ({ loggedIn, onLogout, username }: HomeProps) => {
                 isInputVisible={isInputVisible}
                 onUserIconClick={handleUserIconClick}
                 isUserOptionsVisible={isUserOptionsVisible} />
-            <Feed />    
+            <Feed />
         </>
     )
 }

@@ -34,3 +34,8 @@ img {
   right: -5px;
   border-radius: 10px;
 }
+
+.grid-cols-dynamic {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+

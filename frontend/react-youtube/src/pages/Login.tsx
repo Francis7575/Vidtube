@@ -65,7 +65,7 @@ const Login = ({ onLogin }: LoginProps) => {
         <>
             <Link to="/" className='flex items-center mt-6 ml-6'>
                 <img src={youtubeIcon} alt="Youtube logo" className='max-w-[2.2rem]' />
-                <p className={`text-[.9rem] font-medium ml-1 `}>
+                <p className={`font-medium ml-1 `}>
                     VidTube
                 </p>
             </Link>
@@ -76,12 +76,12 @@ const Login = ({ onLogin }: LoginProps) => {
                     </h2>
                     {InputFields.map((field, index) => (
                         <div key={index} className={`flex flex-col ${index === 1 && 'mt-4'}`}>
-                            <label htmlFor={field.id} className='text-[.85rem] mb-1'>
+                            <label htmlFor={field.id} className=' mb-1'>
                                 {field.label}
                             </label>
                             <div className='relative'>
                                 <input
-                                    className={`w-full pl-8 py-2 outline-none border rounded-[.4rem] text-[.85rem]
+                                    className={`w-full pl-8 py-2 outline-none border rounded-[.4rem] 
                             ${errors[field.name] ? 'border-red' : 'border-input'}`}
                                     id={field.id}
                                     placeholder={field.placeholder}
@@ -100,17 +100,17 @@ const Login = ({ onLogin }: LoginProps) => {
                     <div className='flex justify-between items-center mt-3'>
                         <label htmlFor="remember" className='flex items-center'>
                             <input type="checkbox" name="remember" id="remember" checked={rememberMe} onChange={handleCheckBoxChange} />
-                            <p className='text-[.85rem] ml-2'>Remember me</p>
+                            <p className='ml-2'>Remember me</p>
                         </label>
-                        <Link to="/forgot-password" className='text-right text-[.8rem]'>
+                        <Link to="/forgot-password" className='text-right'>
                             Forgot Password?
                         </Link>
                     </div>
                     <div className='flex flex-col justify-center mt-6'>
-                        <button className='bg-red hover:bg-red-hover text-white text-[.9rem] px-5 py-[.35rem] font-bold rounded-[.4rem]'>
+                        <button className='bg-red hover:bg-red-hover text-white px-5 py-[.35rem] font-bold rounded-[.4rem]'>
                             Login
                         </button>
-                        <Link to="/signup" className='text-center mt-2 text-[.85rem]'>
+                        <Link to="/signup" className='text-center mt-2 '>
                             Create new account
                         </Link>
                     </div>

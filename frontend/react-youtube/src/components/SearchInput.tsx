@@ -16,8 +16,8 @@ const SearchInput = ({ onSearchClick, isInputVisible, onGoBackClick, isSearchVis
     <form onSubmit={handleSubmit}>
       <div className='flex justify-center relative'>
         {isInputVisible && (
-          <div className='flex items-center '>
-            <button onClick={onGoBackClick} className='max-w-[1.4rem]' aria-label="Go back">
+          <div className='flex items-center'>
+            <button onClick={onGoBackClick} className='max-w-[1.4rem] md:hidden' aria-label="Go back">
               <img src={backBtn} alt="Back" />
             </button>
             <input
@@ -25,10 +25,9 @@ const SearchInput = ({ onSearchClick, isInputVisible, onGoBackClick, isSearchVis
               name="search"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              className='pl-4 pr-2 py-1 border rounded ml-3 border-input min-w-[15rem] outline-none'
+              className='md:w-[300px] lg:w-[380px] md:block pl-4 pr-2 py-1 border rounded ml-3 border-input min-w-[15rem] outline-none'
               placeholder="Search..."
               aria-label="Search input"
-
             />
           </div>
         )}

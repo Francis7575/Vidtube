@@ -47,15 +47,10 @@ export type HomeProps = {
     username: string
 }
 
-export type VideoCardProps = {
-    video: string
-    id: string
-    snippet: {}
-}
-
 export type searchData = {
     id: {
         videoId: string;
+        channelId?: string;
     };
     snippet: {
         title: string;
@@ -67,14 +62,14 @@ export type searchData = {
         }
         channelTitle: string;
         publishTime: string;
+        channelId: string;
     }
+    statistics?: {
+        subscriberCount?: string;
+    };
 }
 
 export type SidebarProps = {
     selectedCategory: string,
     setSelectedCategory: (data: string) => void
-}
-
-export type VideosProps = {
-    selectedCategory: string,
 }

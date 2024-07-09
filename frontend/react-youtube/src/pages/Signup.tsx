@@ -69,22 +69,22 @@ const Signup = ({ onSignup }: SignupProps) => {
         <>
             <Link to="/" className='flex items-center mt-6 ml-6'>
                 <img src={youtubeIcon} alt="Youtube logo" className='max-w-[2.2rem]' />
-                <p className={`text-[.9rem] font-medium ml-1 `}>
+                <p className={`font-medium ml-1 `}>
                     VidTube
                 </p>
             </Link>
             <div className='max-w-[17rem] mx-auto flex flex-col justify-center min-h-screen pb-8'>
                 <form onSubmit={handleSubmit}>
-                    <h2 className='text-[1.2rem] text-center font-medium mb-4'>
+                    <h2 className='text-[1.3rem] text-center font-medium mb-4'>
                         Create Your Account
                     </h2>
                     {InputFields.map((field, index) => (
                         <div key={index} className={`flex flex-col ${(index === 0 || index === 1) && 'mb-4'}`}>
-                            <label htmlFor={field.id} className='text-[.85rem] mb-2'>
+                            <label htmlFor={field.id} className='mb-2'>
                                 {field.label}
                             </label>
                             <div className="relative">
-                                <input className={`w-full pl-8 py-2 outline-none border rounded-[.4rem] text-[.85rem]
+                                <input className={`w-full pl-8 py-2 outline-none border rounded-[.4rem] 
                             ${errors[field.name] ? 'border-red' : 'border-input'}`}
                                     placeholder={field.placeholder}
                                     id={field.id}
@@ -100,11 +100,15 @@ const Signup = ({ onSignup }: SignupProps) => {
                                 </span>}
                         </div>
                     ))}
-                    <div className='flex justify-center mt-8'>
-                        <button className='bg-red w-full hover:bg-red-hover text-white text-[.9rem] px-5 py-[.35rem] font-bold rounded-[.4rem]'>
+                    <div className='flex flex-col items-center mt-8'>
+                        <button className='bg-red w-full hover:bg-red-hover text-white px-5 py-[.35rem] font-bold rounded-[.4rem]'>
                             Signup
                         </button>
+                        <Link to="/login" className="mt-3">
+                            Back to login
+                        </Link>
                     </div>
+
                 </form>
             </div>
         </>
