@@ -50,7 +50,7 @@ const ForgotPassword = () => {
                         <button className='bg-red hover:bg-red-hover text-white px-5 py-[.35rem] font-bold rounded-[.4rem]'>
                             Send Reset Link
                         </button>
-                        <Link to="/login" className='text-center mt-2'>
+                        <Link to="/login" className='text-center mt-2 text-black hover:text-red'>
                             Back to Login
                         </Link>
                     </div>

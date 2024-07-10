@@ -1,18 +1,15 @@
 import { Link } from 'react-router-dom'
 import youtubeIcon from '/assets/icon-youtube.png'
-import { LogoProps } from '../types/types'
 
-const Logo = ({isLogoVisible}: LogoProps) => {
+const Logo = () => {
     return (
         <div>
-            {isLogoVisible && (
-                <Link to="/" className='flex items-center'>
-                    <img src={youtubeIcon} alt="Youtube logo" className='max-w-[2.2rem]' />
-                    <p className={`font-medium ml-1 `}>
-                        VidTube
-                    </p>
-                </Link>
-            )}
+            <Link to="/" className='flex items-center'>
+                <img src={youtubeIcon} alt="Youtube logo" className='540:w-[2.2rem] w-[28px]' />
+                <p className={`font-medium ml-1 text-[.9rem] 540:text-[1rem]`}>
+                    VidTube
+                </p>
+            </Link>
         </div>
     )
 }

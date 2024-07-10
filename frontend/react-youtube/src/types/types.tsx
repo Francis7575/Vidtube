@@ -1,24 +1,21 @@
 export type CommonProps = {
-    onSearchClick: () => void;
-    isInputVisible: boolean;
-    onGoBackClick: () => void;
-    isSearchVisible: boolean;
-    onUserIconClick: () => void;
-    isUserOptionsVisible: boolean;
-    onLogout: () => void;
-    loggedIn: boolean;
-    username: string;
+    onSearchClick?: () => void;
+    isInputVisible?: boolean;
+    isSearchVisible?: boolean;
+    onUserIconClick?: () => void;
+    isUserOptionsVisible?: boolean;
+    onLogout?: () => void;
+    loggedIn?: boolean;
+    username?: string;
 };
 
-export type SearchInputProps = CommonProps;
-
-export type NavbarProps = CommonProps & {
-    isLogoVisible: boolean
+export type NavbarProps = {
+    onLogout?: () => void;
+    loggedIn?: boolean;
+    username?: string;
 }
 
-export type LogoProps = {
-    isLogoVisible: boolean
-}
+export type SearchInputProps = NavbarProps
 
 export type LoginData = {
     email: string,
@@ -50,7 +47,7 @@ export type HomeProps = {
 export type searchData = {
     id: {
         videoId: string;
-        channelId?: string;
+        channelId: string;
     };
     snippet: {
         title: string;
@@ -70,6 +67,6 @@ export type searchData = {
 }
 
 export type SidebarProps = {
-    selectedCategory: string,
-    setSelectedCategory: (data: string) => void
+    selectedCategory?: string,
+    setSelectedCategory?: (data: string) => void
 }

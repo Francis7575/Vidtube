@@ -8,7 +8,8 @@ const ChannelDetail = () => {
   const [channelDetail, setChannelDetail] = useState<searchData | null>(null)
   const [videos, setVideos] = useState<searchData[]>([]);
   const { id } = useParams()
-  console.log(channelDetail, videos)
+  // console.log(channelDetail, videos)
+
   useEffect(() => {
     fetchApi(`channels?part=snippet&id=${id}`)
       .then((data) => setChannelDetail(data?.items[0] || null));
@@ -30,13 +31,13 @@ const ChannelDetail = () => {
         <div className="flex flex-col items-center">
           <ChannelCard channelDetail={channelDetail} marginTop="-110px" maxWidth="170px" />
           {subscriberCount && (
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-second-darkblue-opc-70 text-[.9rem] md:text-[1rem]">
               {parseInt(subscriberCount).toLocaleString()} subscribers
             </p>
           )}
         </div>
       )}
-      <div className='px-[8rem] mt-[4rem]'>
+      <div className='px-[2rem] lg:px-[5rem] mt-[4rem]'>
         <Videos videos={videos} />
       </div>
     </div>

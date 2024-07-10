@@ -40,16 +40,16 @@ export const useAuth = () => {
       const data = await response.json();
 
       if (response.ok) {
-        if (rememberMe) {
-          document.cookie = `email=${data.email}; max-age=${60 * 60 * 24}; path=/`;
-        } else {
-          document.cookie = `email=${data.email}; max-age=0; path=/`; // Clear cookie if remember me is not checked
-        }
         setLoggedIn(data.loggedIn);
         setEmail(data.email);
         setUsername(data.username);
       } else {
         alert(data.message);
+      }
+      if (rememberMe) {
+        document.cookie = `email=${data.email}; max-age=${60 * 60 * 24}; path=/`;
+      } else {
+        document.cookie = `email=${data.email}; max-age=0; path=/`; // Clear cookie if remember me is not checked
       }
     } catch (err) {
       console.error(err);

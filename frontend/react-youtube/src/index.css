@@ -35,7 +35,18 @@ img {
   border-radius: 10px;
 }
 
-.grid-cols-dynamic {
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+.search-icon {
+  position: absolute;
+  top: 6px;
+  right: 5px;
 }
 
+.grid-cols-dynamic {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+@media (min-width: 540px) {
+  .login-container {
+    top: 12px;
+  } 
+}

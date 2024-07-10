@@ -1,31 +1,55 @@
 import iconSearch from '/assets/icon-search.png'
-import backBtn from '/assets/icon-left-arrow.png'
+import { useNavigate } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
 import { SearchInputProps } from '../types/types'
-import userIcon from '/assets/user.png'
 import { Link } from 'react-router-dom'
+import userIcon from '/assets/user.png'
+import { useUserContext } from '../useContext/userContext'
 
-const SearchInput = ({ onSearchClick, isInputVisible, onGoBackClick, isSearchVisible, onUserIconClick, isUserOptionsVisible, loggedIn, onLogout, username }: SearchInputProps) => {
-  const [searchValue, setSearchValue] = useState<string>('')
+const SearchInput = ({ loggedIn, onLogout }: SearchInputProps) => {
+  const { isInputVisible, isSearchVisible, isUserOptionsVisible, handleSearchClick, handleUserIconClick } = useUserContext();
+  const [searchTerm, setSearchTerm] = useState<string>('')
+  const navigate = useNavigate()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (searchTerm) {
+      navigate(`/search/${searchTerm}`)
+      setSearchTerm('')
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className=''>
       <div className='flex justify-center relative'>
+        <div className='hidden 540:block'>
+          <input
+            type="text"
+            name="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className='md:w-[300px]  relative lg:w-[380px] pl-4 pr-2 py-1 border rounded ml-3 border-input min-w-[15rem] outline-none'
+            placeholder="Search..."
+            aria-label="Search input"
+          />
+          <button
+            className={`max-w-[1.4rem] cursor-pointer search-icon`}
+            onClick={handleSearchClick}
+            aria-label="Search">
+            <img
+              src={iconSearch}
+              alt="Search Icon"
+            />
+          </button>
+        </div>
         {isInputVisible && (
           <div className='flex items-center'>
-            <button onClick={onGoBackClick} className='max-w-[1.4rem] md:hidden' aria-label="Go back">
-              <img src={backBtn} alt="Back" />
-            </button>
             <input
               type="text"
               name="search"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              className='md:w-[300px] lg:w-[380px] md:block pl-4 pr-2 py-1 border rounded ml-3 border-input min-w-[15rem] outline-none'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className='w-[190px] md:w-[300px] 540:hidden lg:w-[380px] pl-4 pr-2 py-1 border rounded ml-3 border-input outline-none'
               placeholder="Search..."
               aria-label="Search input"
             />
@@ -33,8 +57,8 @@ const SearchInput = ({ onSearchClick, isInputVisible, onGoBackClick, isSearchVis
         )}
         <div className='flex items-center justify-center relative'>
           <button
-            className={`max-w-[1.4rem] cursor-pointer ${isInputVisible && 'search-bar'}`}
-            onClick={onSearchClick}
+            className={`max-w-[1.4rem] cursor-pointer md:hidden 540:hidden ${isInputVisible && 'search-bar'}`}
+            onClick={handleSearchClick}
             aria-label="Search">
             <img
               src={iconSearch}
@@ -42,18 +66,18 @@ const SearchInput = ({ onSearchClick, isInputVisible, onGoBackClick, isSearchVis
             />
           </button>
           {isUserOptionsVisible && (
-            <div className={`login-container shadow-login bg-white text-center mt-3 
+            <div className={`login-container shadow-login bg-white text-center mt-3 540:hidden
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
               {loggedIn ? (
-                <button onClick={onLogout}>
+                <button onClick={onLogout} className='text-red font-medium'>
                   Logout
                 </button>
               ) : (
                 <>
-                  <Link to="/login">
+                  <Link to="/login" className='text-red font-medium'>
                     Login
                   </Link>
-                  <Link to="/signup">
+                  <Link to="/signup" className='text-red font-medium'>
                     Signup
                   </Link>
                 </>
@@ -61,18 +85,13 @@ const SearchInput = ({ onSearchClick, isInputVisible, onGoBackClick, isSearchVis
             </div>
           )}
           <button
-            onClick={onUserIconClick}
-            className='max-w-[1.4rem] ml-4'
+            onClick={handleUserIconClick}
+            className='max-w-[1.4rem] ml-4 540:hidden'
             aria-label="User profile">
             <img
               src={userIcon}
               alt="User" />
           </button>
-          {loggedIn && (
-            <p className='ml-2 font-medium underline'>
-              {username}
-            </p>
-          )}
         </div>
       </div >
     </form>

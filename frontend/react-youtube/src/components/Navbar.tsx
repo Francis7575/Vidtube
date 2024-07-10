@@ -1,22 +1,58 @@
 import { SearchInput, Logo } from '../components'
-import { NavbarProps } from '../types/types'
+import userIcon from '/assets/user.png'
+import { Link } from 'react-router-dom'
+import { useUserContext } from '../useContext/userContext'
+import { useAuth } from '../hooks/useAuth'
 
-const Navbar = ({ isLogoVisible, onSearchClick, onGoBackClick, isInputVisible, isSearchVisible, onUserIconClick, isUserOptionsVisible, loggedIn, onLogout, username }: NavbarProps) => {
+const Navbar = () => {
+    const { onLogout, loggedIn, username } = useAuth();
+    const { isSearchVisible, isUserOptionsVisible, handleUserIconClick } = useUserContext();
 
     return (
-        <nav className={`${isSearchVisible ? 'justify-center' : 'justify-between '} fixed top-0 left-0 right-0 z-50 shadow-md bg-white p-4 flex items-center`}>
-            <Logo isLogoVisible={isLogoVisible} />
-            <SearchInput
-                username={username}
-                loggedIn={loggedIn}
-                onLogout={onLogout}
-                isUserOptionsVisible={isUserOptionsVisible}
-                onUserIconClick={onUserIconClick}
-                isInputVisible={isInputVisible}
-                isSearchVisible={isSearchVisible}
-                onSearchClick={onSearchClick}
-                onGoBackClick={onGoBackClick} />
-        </nav>
+        <div className='w-full fixed top-0 left-0 right-0 z-50 shadow-md bg-white px-4 pt-4 pb-2'>
+            <nav className={`${isSearchVisible ? 'sx:justify-center' : 'sx:justify-between '} justify-between flex items-center`}>
+                <Logo />
+                <SearchInput
+                    onLogout={onLogout}
+                    loggedIn={loggedIn} />
+                <div className='hidden 540:block'>
+                    <button
+                        onClick={handleUserIconClick}
+                        className='max-w-[1.4rem] ml-4'
+                        aria-label="User profile">
+                        <img
+                            src={userIcon}
+                            alt="User" />
+                    </button>
+                    {isUserOptionsVisible && (
+                        <div className='relative'>
+                            <div className={`login-container shadow-login bg-white text-center mt-3
+                            ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
+                                {loggedIn ? (
+                                    <button onClick={onLogout} className='text-red font-medium'>
+                                        Logout
+                                    </button>
+                                ) : (
+                                    <>
+                                        <Link to="/login" className='text-red font-medium'>
+                                            Login
+                                        </Link>
+                                        <Link to="/signup" className='text-red font-medium'>
+                                            Signup
+                                        </Link>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </nav>
+            {/* {loggedIn && (
+                <p className=' mt-2 text-center font-medium'>
+                    {username}'s Account
+                </p>
+            )} */}
+        </div>
     )
 }
 

@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        '540': '540px'
+      },
       colors: {
         'dark-blue': 'hsl(230,17%,14%)',
         'second-darkblue': 'rgb(0, 29, 43)',
@@ -15,6 +18,7 @@ export default {
         'dark-gray': 'hsl(0,0%,24%)',
         'light-gray': 'hsl(0,0%,50%',
         'red-hover': 'hsla(0,100%,50%, 0.6)',
+        'gray': 'rgba(128, 128, 128, 0.14)'
       },
       boxShadow: {
         'login': '0px 10px 10px 0px rgba(0, 0, 0, 0.15)',

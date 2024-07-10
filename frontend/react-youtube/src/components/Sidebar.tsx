@@ -4,7 +4,9 @@ import { SidebarProps } from "../types/types"
 const Sidebar = ({ selectedCategory, setSelectedCategory }: SidebarProps) => {
 
 	const handleButtonClick = (name: string) => {
-		setSelectedCategory(name);
+		if (setSelectedCategory) {
+			setSelectedCategory(name);
+		}
 	};
 
 	return (
@@ -14,7 +16,7 @@ const Sidebar = ({ selectedCategory, setSelectedCategory }: SidebarProps) => {
 				{categories.map((category, index) => (
 					<button onClick={() => handleButtonClick(category.name)}
 						className={`flex flex-col items-center md:flex-row md:justify-start w-full px-4 py-2 md:px-6 md:py-3 md:gap-2 rounded-[.4rem]
-                        ${category.name === selectedCategory ? 'bg-red' : 'bg-transparent'}`}
+                        ${category.name === selectedCategory ? 'bg-red' : 'bg-transparent hover:bg-gray'}`}
 						key={index}
 					>
 						<span>

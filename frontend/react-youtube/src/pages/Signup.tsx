@@ -104,7 +104,7 @@ const Signup = ({ onSignup }: SignupProps) => {
                         <button className='bg-red w-full hover:bg-red-hover text-white px-5 py-[.35rem] font-bold rounded-[.4rem]'>
                             Signup
                         </button>
-                        <Link to="/login" className="mt-3">
+                        <Link to="/login" className="mt-3 text-black hover:text-red">
                             Back to login
                         </Link>
                     </div>
