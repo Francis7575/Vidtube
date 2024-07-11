@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
 const corsOptions = {
-    origin: 'https://francis7575.github.io/Vidtube/', // frontend url
+    origin: 'https://francis7575.github.io', // frontend url
     credentials: true,
     optionsSuccessStatus: 200,
     methods: 'GET, POST, PUT, DELETE',
