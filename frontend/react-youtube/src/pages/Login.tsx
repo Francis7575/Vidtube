@@ -63,7 +63,7 @@ const Login = ({ onLogin }: LoginProps) => {
 
     return (
         <>
-            <Link to="/" className='flex items-center mt-6 ml-6'>
+            <Link to="/Vidtube" className='flex items-center mt-6 ml-6'>
                 <img src={youtubeIcon} alt="Youtube logo" className='max-w-[2.2rem]' />
                 <p className={`font-medium ml-1 `}>
                     VidTube

@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/Vidtube" element={<Home />} />
       <Route path="/video/:id" element={<VideoDetail />} />
       <Route path="/channel/:id" element={<ChannelDetail />} />
       <Route path="/login" element={<Login onLogin={handleLoginWrapper} />} />
