@@ -8,7 +8,7 @@ export const useAuth = () => {
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const { handleLoginContext } = useUserContext();
-
+  console.log(email)
   const navigate = useNavigate();
 
   useEffect(() => {

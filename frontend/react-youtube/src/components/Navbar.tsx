@@ -2,11 +2,9 @@ import { SearchInput, Logo } from '../components'
 import userIcon from '/assets/user.png'
 import { Link } from 'react-router-dom'
 import { useUserContext } from '../useContext/userContext'
-import { useAuth } from '../hooks/useAuth'
 
 const Navbar = () => {
     const { isSearchVisible, isUserOptionsVisible, handleUserIconClick, loggedInContext, handleLogoutContext } = useUserContext();
-    const { username } = useAuth()
 
     return (
         <div className='w-full fixed top-0 left-0 right-0 z-50 shadow-md bg-white px-4 pt-4 pb-2'>

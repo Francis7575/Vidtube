@@ -4,11 +4,9 @@ import youtubeIcon from '/assets/icon-youtube.png';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState<string>('');
-    const [message, setMessage] = useState<string>('');
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        alert('If an account with that email exists, a password reset link will be sent.');
     };
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,11 +39,6 @@ const ForgotPassword = () => {
                             value={email}
                             onChange={handleInputChange} />
                     </div>
-                    {message && (
-                        <span className='text-green mt-2'>
-                            {message}
-                        </span>
-                    )}
                     <div className='flex flex-col justify-center mt-5'>
                         <button className='bg-red hover:bg-red-hover text-white px-5 py-[.35rem] font-bold rounded-[.4rem]'>
                             Send Reset Link
