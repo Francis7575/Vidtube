@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.search-bar {
+  position: absolute;
+  right: 42px;
+  top: 7px;
+  width: 20px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem .95rem;
+  position: absolute;
+  top: 29px;
+  right: -5px;
+  border-radius: 10px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+}
+
+.grid-cols-dynamic {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.react-player {
+  height: 65vh !important;
+  width: 100% !important;
+}
+
+.grid-cols-videodetail {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+@media (min-width: 540px) {
+  .login-container {
+    top: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .react-player {
+    height: 85vh !important;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .grid-cols-videodetail {
+    grid-template-columns: 1fr;
+  }
+}
