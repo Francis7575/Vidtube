@@ -8,7 +8,6 @@ type VideoCardProps = {
 };
 
 const VideoCard = ({ video: { id: { videoId }, snippet } }: VideoCardProps) => {
-    console.log(videoId, snippet)
     return (
         <section className="w-full hover:opacity-70 h-full shadow-lg bg-white max-w-[450px] mx-auto">
             <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
@@ -16,7 +15,7 @@ const VideoCard = ({ video: { id: { videoId }, snippet } }: VideoCardProps) => {
                     src={snippet?.thumbnails?.high?.url || demoThumbnailUrl}
                     alt={snippet?.title} />
             </Link>
-            <div className="px-3  h-full pt-2 pb-4">
+            <div className="px-3 h-full pt-2 pb-4">
                 <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
                     <p className="text-second-darkblue font-bold">
                         {snippet?.title.slice(0, 60) || demoVideoTitle.slice(0, 60)}
