@@ -14,7 +14,7 @@ export const useAuth = () => {
   useEffect(() => {
     const checkUserCookie = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/users/check-logged-in`, {
+        const response = await fetch(`https://vidtube-6vlg.onrender.com/users/check-logged-in`, {
           credentials: 'include'
         });
         const data = await response.json();
@@ -32,7 +32,7 @@ export const useAuth = () => {
 
   const handleLogin = async (formData: LoginData, rememberMe: boolean) => {
     try {
-      const response = await fetch(`http://localhost:4000/users/login`, {
+      const response = await fetch(`https://vidtube-6vlg.onrender.com/users/login`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -63,7 +63,7 @@ export const useAuth = () => {
   const handleSignup = async (formData: SignupData): Promise<boolean> => {
     console.log('Signup form data:', formData);
     try {
-      const response = await fetch(`http://localhost:4000/users/signup`, {
+      const response = await fetch(`https://vidtube-6vlg.onrender.com/users/signup`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -90,7 +90,7 @@ export const useAuth = () => {
   };
 
   const handleLogout = async () => {
-    const response = await fetch(`http://localhost:4000/users/logout`, {
+    const response = await fetch(`https://vidtube-6vlg.onrender.com/users/logout`, {
       credentials: 'include'
     });
     const data = await response.json();
