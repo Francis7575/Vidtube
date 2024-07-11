@@ -35,7 +35,7 @@ export type SignupData = {
 }
 
 export type SignupProps = {
-    onSignup: (data: SignupData) => void
+    onSignup: (data: SignupData) => Promise<boolean>
 }
 
 export type HomeProps = {
@@ -61,8 +61,10 @@ export type searchData = {
         publishTime: string;
         channelId: string;
     }
-    statistics?: {
+    statistics: {
         subscriberCount?: string;
+        viewCount: string
+        likeCount: string
     };
 }
 
@@ -70,3 +72,4 @@ export type SidebarProps = {
     selectedCategory?: string,
     setSelectedCategory?: (data: string) => void
 }
+

@@ -35,7 +35,7 @@ const SearchFeed = () => {
                         videos
                     </p>
                     <div className='mt-4 '>
-                        <Videos videos={videos} />
+                        <Videos videos={videos} className='grid-cols-dynamic'/>
                     </div>
                 </div>
             </div>

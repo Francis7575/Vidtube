@@ -45,8 +45,30 @@ img {
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
 
+.react-player {
+  height: 65vh !important;
+  width: 100% !important;
+}
+
+.grid-cols-videodetail {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
 @media (min-width: 540px) {
   .login-container {
     top: 12px;
-  } 
+  }
+}
+
+@media (min-width: 768px) {
+  .react-player {
+    height: 85vh !important;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .grid-cols-videodetail {
+    grid-template-columns: 1fr;
+  }
 }

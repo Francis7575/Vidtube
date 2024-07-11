@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LoginData, SignupData } from '../types/types'
+import { useUserContext } from '../useContext/userContext';
 
 export const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
+  const { handleLoginContext } = useUserContext();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +44,7 @@ export const useAuth = () => {
 
       if (response.ok) {
         setLoggedIn(data.loggedIn);
+        handleLoginContext(true)
         setEmail(data.email);
         setUsername(data.username);
       } else {
@@ -56,7 +60,7 @@ export const useAuth = () => {
     }
   };
 
-  const handleSignup = async (formData: SignupData) => {
+  const handleSignup = async (formData: SignupData): Promise<boolean> => {
     console.log('Signup form data:', formData);
     try {
       const response = await fetch(`http://localhost:4000/users/signup`, {
@@ -72,12 +76,16 @@ export const useAuth = () => {
       if (response.ok) {
         setEmail(data.email);
         setLoggedIn(data.loggedIn);
+        handleLoginContext(true)
         setUsername(data.username);
+        return true; 
       } else {
         alert(data.message);
+        return false; 
       }
     } catch (err) {
       console.error(err);
+      return false; 
     }
   };
 
@@ -89,7 +97,7 @@ export const useAuth = () => {
     setEmail('');
     setUsername('');
     setLoggedIn(data.loggedIn);
-    navigate('/');
+    navigate('/login');
   };
 
   return { loggedIn, username, handleLogin, handleSignup, handleLogout };

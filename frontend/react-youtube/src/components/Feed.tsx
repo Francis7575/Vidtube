@@ -23,7 +23,7 @@ const Feed = () => {
                     <span className='text-darkblue'>{selectedCategory}</span>
                     <span className='text-red ml-1'>Videos</span>
                 </h2>
-                <Videos videos={videos} />
+                <Videos videos={videos} className='grid-cols-dynamic'/>
             </div>
         </div>
     )

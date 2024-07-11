@@ -8,7 +8,6 @@ const ChannelDetail = () => {
   const [channelDetail, setChannelDetail] = useState<searchData | null>(null)
   const [videos, setVideos] = useState<searchData[]>([]);
   const { id } = useParams()
-  // console.log(channelDetail, videos)
 
   useEffect(() => {
     fetchApi(`channels?part=snippet&id=${id}`)
@@ -38,7 +37,7 @@ const ChannelDetail = () => {
         </div>
       )}
       <div className='px-[2rem] lg:px-[5rem] mt-[4rem]'>
-        <Videos videos={videos} />
+        <Videos videos={videos} className='grid-cols-dynamic'/>
       </div>
     </div>
   )

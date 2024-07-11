@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       screens: {
-        '540': '540px'
+        '540': '540px',
+        '413': '413px',
+        '900': '900px'
       },
       colors: {
         'dark-blue': 'hsl(230,17%,14%)',

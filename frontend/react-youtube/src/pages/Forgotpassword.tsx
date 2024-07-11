@@ -23,7 +23,7 @@ const ForgotPassword = () => {
                     Vidtube
                 </p>
             </Link>
-            <div className='max-w-[17rem] mx-auto flex flex-col justify-center min-h-screen pb-12'>
+            <div className='max-w-[17rem] md:max-w-[28rem] lg:max-w-[35rem] mx-auto flex flex-col justify-center min-h-screen pb-12'>
                 <form onSubmit={handleSubmit}>
                     <h2 className='text-[1.2rem] text-center font-medium mb-4'>
                         Forgot Password

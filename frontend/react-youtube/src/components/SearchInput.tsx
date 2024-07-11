@@ -1,13 +1,12 @@
 import iconSearch from '/assets/icon-search.png'
 import { useNavigate } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
-import { SearchInputProps } from '../types/types'
 import { Link } from 'react-router-dom'
 import userIcon from '/assets/user.png'
 import { useUserContext } from '../useContext/userContext'
 
-const SearchInput = ({ loggedIn, onLogout }: SearchInputProps) => {
-  const { isInputVisible, isSearchVisible, isUserOptionsVisible, handleSearchClick, handleUserIconClick } = useUserContext();
+const SearchInput = () => {
+  const { isInputVisible, isSearchVisible, isUserOptionsVisible, handleSearchClick, handleUserIconClick, loggedInContext, handleLogoutContext } = useUserContext();
   const [searchTerm, setSearchTerm] = useState<string>('')
   const navigate = useNavigate()
 
@@ -20,7 +19,7 @@ const SearchInput = ({ loggedIn, onLogout }: SearchInputProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className=''>
+    <form onSubmit={handleSubmit}>
       <div className='flex justify-center relative'>
         <div className='hidden 540:block'>
           <input
@@ -68,8 +67,8 @@ const SearchInput = ({ loggedIn, onLogout }: SearchInputProps) => {
           {isUserOptionsVisible && (
             <div className={`login-container shadow-login bg-white text-center mt-3 540:hidden
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
-              {loggedIn ? (
-                <button onClick={onLogout} className='text-red font-medium'>
+              {loggedInContext ? (
+                <button onClick={handleLogoutContext} className='text-red font-medium'>
                   Logout
                 </button>
               ) : (

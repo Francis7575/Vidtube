@@ -20,6 +20,8 @@ type Category = {
 export const categories: Category[] = [
     { name: 'New', icon: HomeIcon },
     { name: 'MrBeast', icon: MouseIcon },
+    { name: 'Dua Lipa', icon: MusicNoteIcon },
+    { name: 'Katy Perry', icon: MusicNoteIcon },
     { name: 'Eminem', icon: MusicNoteIcon },
     { name: 'Taylor Swift', icon: MusicNoteIcon },
     { name: 'Learn Coding', icon: CodeIcon },

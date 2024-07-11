@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import { SignupData, SignupProps } from "../types/types"
 import youtubeIcon from '/assets/icon-youtube.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import userIcon from '/assets/icon-user.png'
 import emailIcon from '/assets/icon-email.png'
 import passwordIcon from '/assets/icon-lock.png'
@@ -18,6 +18,7 @@ const Signup = ({ onSignup }: SignupProps) => {
         email: '',
         password: ''
     });
+    const navigate = useNavigate();
     const InputFields = [
         { type: 'text', name: 'username', id: 'username', placeholder: 'Enter username', label: 'Username', icon: userIcon },
         { type: 'email', name: 'email', id: 'email', placeholder: 'Enter email address', label: 'Email Address', icon: emailIcon },
@@ -46,10 +47,13 @@ const Signup = ({ onSignup }: SignupProps) => {
         return formValid;
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         validateForm()
-        onSignup(formData)
+        const result = await onSignup(formData);
+        if (result) {
+            navigate('/'); // Redirect to homepage upon successful signup
+        }
     }
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +77,7 @@ const Signup = ({ onSignup }: SignupProps) => {
                     VidTube
                 </p>
             </Link>
-            <div className='max-w-[17rem] mx-auto flex flex-col justify-center min-h-screen pb-8'>
+            <div className='max-w-[17rem] md:max-w-[28rem] lg:max-w-[35rem] mx-auto flex flex-col justify-center min-h-screen pb-8'>
                 <form onSubmit={handleSubmit}>
                     <h2 className='text-[1.3rem] text-center font-medium mb-4'>
                         Create Your Account

@@ -5,16 +5,14 @@ import { useUserContext } from '../useContext/userContext'
 import { useAuth } from '../hooks/useAuth'
 
 const Navbar = () => {
-    const { onLogout, loggedIn, username } = useAuth();
-    const { isSearchVisible, isUserOptionsVisible, handleUserIconClick } = useUserContext();
+    const { isSearchVisible, isUserOptionsVisible, handleUserIconClick, loggedInContext, handleLogoutContext } = useUserContext();
+    const { username } = useAuth()
 
     return (
         <div className='w-full fixed top-0 left-0 right-0 z-50 shadow-md bg-white px-4 pt-4 pb-2'>
             <nav className={`${isSearchVisible ? 'sx:justify-center' : 'sx:justify-between '} justify-between flex items-center`}>
                 <Logo />
-                <SearchInput
-                    onLogout={onLogout}
-                    loggedIn={loggedIn} />
+                <SearchInput />
                 <div className='hidden 540:block'>
                     <button
                         onClick={handleUserIconClick}
@@ -28,8 +26,8 @@ const Navbar = () => {
                         <div className='relative'>
                             <div className={`login-container shadow-login bg-white text-center mt-3
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
-                                {loggedIn ? (
-                                    <button onClick={onLogout} className='text-red font-medium'>
+                                {loggedInContext ? (
+                                    <button onClick={handleLogoutContext} className='text-red font-medium'>
                                         Logout
                                     </button>
                                 ) : (
@@ -47,7 +45,7 @@ const Navbar = () => {
                     )}
                 </div>
             </nav>
-            {/* {loggedIn && (
+            {/* {loggedInContext && (
                 <p className=' mt-2 text-center font-medium'>
                     {username}'s Account
                 </p>
