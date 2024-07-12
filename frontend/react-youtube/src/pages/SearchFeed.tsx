@@ -17,7 +17,7 @@ const SearchFeed = () => {
 
     const handleCategorySelect = (category: string) => {
         setSelectedCategory(category);
-        navigate('/Vidtube'); // Navigate back to home page
+        navigate('/'); // Navigate back to home page
     };
 
     return (
