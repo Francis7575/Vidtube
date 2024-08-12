@@ -15,7 +15,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://vidtube-6vlg.onrender.com'); // Match frontend URL
+    res.setHeader('Access-Control-Allow-Origin', 'https://vidtube-1.onrender.com'); // Match frontend URL
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Combine headers
     next();
 });
