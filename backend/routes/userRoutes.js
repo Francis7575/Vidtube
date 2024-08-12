@@ -47,6 +47,10 @@ router.post('/login', async (req, res) => {
                 message: 'Password incorrect!'
             })
         }
+    } else {
+        res.status(401).json({
+            'status': 'not authorized'
+        })
     }
 })
 
@@ -76,7 +80,7 @@ router.post('/signup', (req, res) => {
             username: user.username,
             loggedIn: true
         })
-    }
+    } 
 })
 
 router.get('/logout', (req, res) => {
