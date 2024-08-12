@@ -19,6 +19,10 @@ router.get('/check-logged-in', (req, res) => {
                 loggedIn: false
             })
         }
+    } else {
+        res.status(401).json({
+            'status': 'not authorized'
+        })
     }
 })
 
