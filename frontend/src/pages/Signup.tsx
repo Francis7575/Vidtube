@@ -52,7 +52,7 @@ const Signup = ({ onSignup }: SignupProps) => {
         validateForm()
         const result = await onSignup(formData);
         if (result) {
-            navigate('/Vidtube'); // Redirect to homepage upon successful signup
+            navigate('/');
         }
     }
 
@@ -112,7 +112,6 @@ const Signup = ({ onSignup }: SignupProps) => {
                             Back to login
                         </Link>
                     </div>
-
                 </form>
             </div>
         </>
