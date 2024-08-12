@@ -11,13 +11,13 @@
 </ul>
 
 <h2 className="underline">Technologies and Integrations<h2>
+<div className="text-[1rem]">
 <p>React, Typescript, TailwindCSS, Material UI and Node.js.</p>
-<a href="https://rapidapi.com/ytdlfree/api/youtube-v31">API Link</a>
-
+<a href="https://rapidapi.com/ytdlfree/api/youtube-v31" target="_blank">API Link</a>
 <p>Server is running in BACKEND_PORT=3000</p>
-
+</div>
 <h2 className="underline">Explore the project</h2>
 <p>
   For a deeper dive into the project and its features, visit the 
-<a href="https://vidtube-1.onrender.com/">project page.</a>
+<a href="https://vidtube-1.onrender.com/" target="_blank">project page.</a>
 </p>
