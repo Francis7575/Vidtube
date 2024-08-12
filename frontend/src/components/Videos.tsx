@@ -23,7 +23,7 @@ const Videos = ({ videos, className }: VideosProps) => {
 					<ChannelCard channelDetail={channelItem} />
 				</div>
 			)}
-			{filteredVideoItems.map((item, idx) => (
+			{filteredVideoItems.map((item) => (
 				<div key={item.id.videoId} className="mb-5">
 					<VideoCard video={item} />
 				</div>
