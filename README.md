@@ -12,10 +12,10 @@
 
 <h2>Technologies and Integrations</h2>
 <p>React, Typescript, TailwindCSS, Material UI and Node.js.</p>
-<a href="https://rapidapi.com/ytdlfree/api/youtube-v31" target="_blank">API Link</a>
+<a href="https://rapidapi.com/ytdlfree/api/youtube-v31"  target="_blank" rel="noopener noreferrer">API Link</a>
 <p>Server is running in BACKEND_PORT=3000</p>
 <h2 className="underline">Explore the project</h2>
 <p>
   For a deeper dive into the project and its features, visit the 
-<a href="https://vidtube-1.onrender.com/" target="_blank">project page.</a>
+<a href="https://vidtube-1.onrender.com/"  target="_blank" rel="noopener noreferrer">project page.</a>
 </p>
