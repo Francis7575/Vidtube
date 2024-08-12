@@ -6,13 +6,21 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
 const corsOptions = {
-    origin: '*',  // Temporarily allow all origins for debugging
+    origin: 'https://vidtube-1.onrender.com', // frontend url
     credentials: true,
     optionsSuccessStatus: 200,
     methods: 'GET, POST, PUT, DELETE',
-};
+}
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions))
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://vidtube-1.onrender.com');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'application/json');
+    res.setHeader('Access-Control-Allow-Headers', 'Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    next();
+});
 app.use(express.json())
 app.use(cookieParser(process.env.SECURITY_KEY))
 app.use(express.urlencoded({ extended: true }))
