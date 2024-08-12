@@ -14,7 +14,7 @@ const Videos = ({ videos, className }: VideosProps) => {
 	// Separate channel and video items
 	const channelItem = videos.find(item => item.id.channelId);
 	const videoItems = videos.filter(item => item.id.videoId);
-	const filteredVideoItems = videoItems.filter((_, index) => index !== 2);
+	const filteredVideoItems = videoItems.filter((_, index) => index !== 2 && index !== 15);
 	return (
 		<div className={`px-4 gap-4 grid ${className}`}>
 			{channelItem && (
