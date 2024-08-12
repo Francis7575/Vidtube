@@ -11,11 +11,9 @@
 </ul>
 
 <h2 className="underline">Technologies and Integrations<h2>
-<div className="!text-xs">
-<p>React, Typescript, TailwindCSS, Material UI and Node.js.</p>
+<h6>React, Typescript, TailwindCSS, Material UI and Node.js.</p>
 <a href="https://rapidapi.com/ytdlfree/api/youtube-v31" target="_blank">API Link</a>
-<p>Server is running in BACKEND_PORT=3000</p>
-</div>
+<h6>Server is running in BACKEND_PORT=3000</p>
 <h2 className="underline">Explore the project</h2>
 <p>
   For a deeper dive into the project and its features, visit the 
