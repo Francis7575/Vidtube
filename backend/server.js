@@ -5,22 +5,28 @@ dotenv.config()
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-const corsOptions = {
-    origin: 'https://vidtube-1.onrender.com', // frontend url
-    credentials: true,
-    optionsSuccessStatus: 200,
-    methods: 'GET, POST, PUT, DELETE',
-}
+// List of allowed origins
+const allowedOrigins = [
+    'https://vidtube-1.onrender.com',
+    'http://localhost:5173'
+];
 
-app.use(cors(corsOptions))
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://vidtube-1.onrender.com');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Headers', 'application/json');
-    res.setHeader('Access-Control-Allow-Headers', 'Authorization');
+const customCors = (req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    if (req.method === 'OPTIONS') {
+        return res.status(204).end();
+    }
     next();
-});
+};
+
+// Apply custom CORS middleware
+app.use(customCors);
 app.use(express.json())
 app.use(cookieParser(process.env.SECURITY_KEY))
 app.use(express.urlencoded({ extended: true }))
