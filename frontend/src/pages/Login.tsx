@@ -102,9 +102,6 @@ const Login = ({ onLogin }: LoginProps) => {
                             <input type="checkbox" name="remember" id="remember" checked={rememberMe} onChange={handleCheckBoxChange} />
                             <p className='ml-2'>Remember me</p>
                         </label>
-                        <Link to="/forgot-password" className='text-right text-black hover:text-red'>
-                            Forgot Password?
-                        </Link>
                     </div>
                     <div className='flex flex-col justify-center mt-6'>
                         <button className='bg-red hover:bg-red-hover text-white px-5 py-[.35rem] font-bold rounded-[.4rem]'>
