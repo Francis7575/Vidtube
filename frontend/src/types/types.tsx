@@ -24,7 +24,7 @@ export type LoginData = {
 }
 
 export type LoginProps = {
-    onLogin: (data: LoginData, rememberMe: boolean) => void
+    onLogin: (data: LoginData, rememberMe: boolean) => Promise<boolean>
 }
 
 export type SignupData = {
@@ -55,6 +55,9 @@ export type searchData = {
         thumbnails: {
             high: {
                 url: string;
+            }
+            medium: {
+                url: string
             }
         }
         channelTitle: string;

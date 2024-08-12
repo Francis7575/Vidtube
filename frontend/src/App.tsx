@@ -6,9 +6,10 @@ import { LoginData } from './types/types'
 
 const App = () => {
   const { handleLogin, handleSignup } = useAuth();
-  const handleLoginWrapper = (formData: LoginData, rememberMe: boolean) => {
-    handleLogin(formData, rememberMe);
-  };
+
+  const handleLoginWrapper = async (formData: LoginData, rememberMe: boolean): Promise<boolean> => {
+    return handleLogin(formData, rememberMe);
+  }
 
   return (
     <Routes>

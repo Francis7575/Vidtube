@@ -11,11 +11,11 @@ const Videos = ({ videos, className }: VideosProps) => {
 	if (!Array.isArray(videos)) {
 		return <div className="pl-4">No videos available</div>;
 	}
-	
+
 	// Separate channel and video items
 	const channelItem = videos.find(item => item.id.channelId);
 	const videoItems = videos.filter(item => item.id.videoId);
-
+	const filteredVideoItems = videoItems.filter((_, index) => index !== 2);
 	return (
 		<div className={`px-4 gap-4 grid ${className}`}>
 			{channelItem && (
@@ -23,8 +23,8 @@ const Videos = ({ videos, className }: VideosProps) => {
 					<ChannelCard channelDetail={channelItem} />
 				</div>
 			)}
-			{videoItems.map((item, idx) => (
-				<div key={idx} className="mb-5">
+			{filteredVideoItems.map((item, idx) => (
+				<div key={item.id.videoId} className="mb-5">
 					<VideoCard video={item} />
 				</div>
 			))}

@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { LoginData, LoginProps } from '../types/types'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import userIcon from '/assets/icon-user.png'
 import passwordIcon from '/assets/icon-lock.png'
 import youtubeIcon from '/assets/icon-youtube.png'
@@ -20,6 +20,7 @@ const Login = ({ onLogin }: LoginProps) => {
         { type: 'email', name: 'email', id: 'email', placeholder: 'Enter email address', label: 'Email Address', icon: userIcon },
         { type: 'password', name: 'password', id: 'password', placeholder: 'Enter password', label: 'Password', icon: passwordIcon }
     ]
+    const navigate = useNavigate();
 
     const validateForm = () => {
         let formValid = true;
@@ -39,10 +40,13 @@ const Login = ({ onLogin }: LoginProps) => {
         return formValid;
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         validateForm()
-        onLogin(formData, rememberMe)
+        const result = await onLogin(formData, rememberMe)
+        if (result) {
+            navigate('/')
+        }
     }
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

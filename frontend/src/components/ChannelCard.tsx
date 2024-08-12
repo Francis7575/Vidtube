@@ -13,11 +13,11 @@ const ChannelCard = ({ channelDetail, marginTop, maxWidth }: ChannelCardProps) =
     return (
         <div style={{ marginTop }}>
             <Link to={`../channel/${channelDetail?.id?.channelId}`}>
-                <img style={{ maxWidth }}
+                <img style={{ maxWidth }} className="mx-auto"
                     src={channelDetail?.snippet?.thumbnails?.high?.url || demoProfilePicture}
                     alt={channelDetail?.snippet?.title} />
                 <p className={`mt-3 flex items-center justify-center`}>
-                    <span 
+                    <span
                         className="flex items-center mt-1 text-second-darkblue-opc-70 text-[.9rem] md:text-[1.1rem]">
                         {channelDetail?.snippet?.title}
                     </span>

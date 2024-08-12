@@ -26,7 +26,7 @@ const customCors = (req, res, next) => {
 };
 
 // Apply custom CORS middleware
-app.use(customCors);
+app.use(cors(customCors));
 app.use(express.json())
 app.use(cookieParser(process.env.SECURITY_KEY))
 app.use(express.urlencoded({ extended: true }))
