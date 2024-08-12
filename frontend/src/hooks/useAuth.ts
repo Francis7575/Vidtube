@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { LoginData, SignupData } from '../types/types'
 import { useUserContext } from '../useContext/userContext';
 
+const API_URL = import.meta.env.VITE_REACT_API_URL;
 export const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
@@ -14,7 +15,7 @@ export const useAuth = () => {
   useEffect(() => {
     const checkUserCookie = async () => {
       try {
-        const response = await fetch(`https://vidtube-6vlg.onrender.com/users/check-logged-in`, {
+        const response = await fetch(`${API_URL}/users/check-logged-in`, {
           credentials: 'include'
         });
         const data = await response.json();
@@ -32,7 +33,7 @@ export const useAuth = () => {
 
   const handleLogin = async (formData: LoginData, rememberMe: boolean): Promise<boolean> => {
     try {
-      const response = await fetch(`https://vidtube-6vlg.onrender.com/users/login`, {
+      const response = await fetch(`${API_URL}/users/login`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -67,7 +68,7 @@ export const useAuth = () => {
   const handleSignup = async (formData: SignupData): Promise<boolean> => {
     console.log('Signup form data:', formData);
     try {
-      const response = await fetch(`https://vidtube-6vlg.onrender.com/users/signup`, {
+      const response = await fetch(`${API_URL}/users/signup`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -94,7 +95,7 @@ export const useAuth = () => {
   };
 
   const handleLogout = async () => {
-    const response = await fetch(`https://vidtube-6vlg.onrender.com/users/logout`, {
+    const response = await fetch(`${API_URL}/users/logout`, {
       credentials: 'include'
     });
     const data = await response.json();
