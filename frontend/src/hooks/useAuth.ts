@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { LoginData, SignupData } from '../types/types'
 import { useUserContext } from '../useContext/userContext';
 
-const API_URL = import.meta.env.VITE_REACT_API_URL || 'https://localhost:5173';
+const API_URL = import.meta.env.VITE_REACT_API_URL || 'http://localhost:5173';
 
 export const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
