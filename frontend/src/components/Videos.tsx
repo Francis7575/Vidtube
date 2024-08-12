@@ -7,7 +7,6 @@ type VideosProps = {
 }
 
 const Videos = ({ videos, className }: VideosProps) => {
-	// Add a check to ensure videos is defined and is an array
 	if (!Array.isArray(videos)) {
 		return <div className="pl-4">No videos available</div>;
 	}
