@@ -1,7 +1,7 @@
 # Vidtube
 
 <h2 className="underline">Overview</h2>
-<img src="./frotend/assets/image-project.png" alt="project-overview"/>
+<img src="./frontend/assets/image-project.png" alt="project-overview"/>
 <p>A Video Player project utilizing the YouTube API from RapidAPI, featuring user authentication with basic login and signup functionality, it contains the following features:</p>
 
 <ul>
