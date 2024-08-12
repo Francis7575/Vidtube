@@ -1,7 +1,7 @@
 # Youtube-clone
 <style>
   .paragraph-container {
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
   }
 </style>
 <h2 className="underline">Overview</h2>
