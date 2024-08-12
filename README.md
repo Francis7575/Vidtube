@@ -10,10 +10,10 @@
 <li>Dynamic video feeds integration</li>
 </ul>
 
-<h2>Technologies and Integrations<h2>
-<h6>React, Typescript, TailwindCSS, Material UI and Node.js.</p>
+<h2>Technologies and Integrations</h2>
+<p>React, Typescript, TailwindCSS, Material UI and Node.js.</p>
 <a href="https://rapidapi.com/ytdlfree/api/youtube-v31" target="_blank">API Link</a>
-<h6>Server is running in BACKEND_PORT=3000</p>
+<p>Server is running in BACKEND_PORT=3000</p>
 <h2 className="underline">Explore the project</h2>
 <p>
   For a deeper dive into the project and its features, visit the 
