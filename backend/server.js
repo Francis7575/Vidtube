@@ -5,22 +5,14 @@ dotenv.config()
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-const allowedOrigins = ['https://vidtube-1.onrender.com', 'http://localhost:5173'];
-
-const dynamicCorsOptions = {
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);  // Allow the request if the origin is in the allowedOrigins array
-        } else {
-            callback(new Error('Not allowed by CORS'));  // Block the request if the origin is not allowed
-        }
-    },
+const corsOptions = {
+    origin: '*',  // Temporarily allow all origins for debugging
     credentials: true,
     optionsSuccessStatus: 200,
     methods: 'GET, POST, PUT, DELETE',
 };
 
-app.use(cors(dynamicCorsOptions)); 
+app.use(cors(corsOptions));
 app.use(express.json())
 app.use(cookieParser(process.env.SECURITY_KEY))
 app.use(express.urlencoded({ extended: true }))
