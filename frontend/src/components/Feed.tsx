@@ -6,7 +6,6 @@ import { fetchApi } from '../utils/fetchApi'
 const Feed = () => {
     const [selectedCategory, setSelectedCategory] = useState<string>('New')
     const [videos, setVideos] = useState<searchData[]>([]);
-
     useEffect(() => {
         fetchApi(`search?q=${selectedCategory}&part=snippet`)
             .then((data) => setVideos(data.items))
