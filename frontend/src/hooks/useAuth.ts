@@ -39,7 +39,7 @@ export const useAuth = () => {
         headers: {
           'Content-type': 'application/json'
         },
-        body: JSON.stringify({ email: formData.email, password: formData.password }),
+        body: JSON.stringify({ email: formData.email, password: formData.password, rememberMe }),
         credentials: 'include'
       });
       const data = await response.json();
@@ -48,12 +48,6 @@ export const useAuth = () => {
         handleLoginContext(true);
         setEmail(data.email);
         setUsername(data.username);
-  
-        if (rememberMe) {
-          document.cookie = `email=${data.email}; max-age=${60 * 60 * 24}; path=/`;
-        } else {
-          document.cookie = `email=${data.email}; max-age=0; path=/`; // Clear cookie if remember me is not checked
-        }
   
         return true; // Return true if login is successful
       } else {
