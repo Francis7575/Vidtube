@@ -1,7 +1,6 @@
-import Home from './pages/Home'
 import { Routes, Route } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
-import { Login, Signup, VideoDetail, ChannelDetail, SearchFeed } from './components'
+import { Login, Signup, Home, VideoDetail, ChannelDetail, SearchFeed } from './components'
 
 const App = () => {
   const { handleLogin, handleSignup } = useAuth();

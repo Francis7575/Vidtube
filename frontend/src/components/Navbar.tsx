@@ -43,12 +43,7 @@ const Navbar = () => {
                     )}
                 </div>
             </nav>
-            {/* {loggedInContext && (
-                <p className=' mt-2 text-center font-medium'>
-                    {username}'s Account
-                </p>
-            )} */}
-        </div>
+            </div>
     )
 }
 
