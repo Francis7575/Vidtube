@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
 	const { email, password, rememberMe } = req.body; // Get the rememberMe flag from the request
 	console.log(req.body);
 
-	// Check if user exists in the database
+	// Check if user already exists
 	const user = getUserByEmail(email);
 	if (user) {
 		// Check if password matches

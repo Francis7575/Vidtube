@@ -7,9 +7,6 @@ type UserContextType = {
     isInputVisible: boolean;
     handleSearchClick: () => void;
     handleUserIconClick: () => void;
-    loggedInContext: boolean
-    handleLogoutContext: () => void
-    handleLoginContext: (data: boolean) => void
 };
 
 type UserProviderProps = {
@@ -21,9 +18,6 @@ const initialUserContext: UserContextType = {
     setIsUserOptionsVisible: () => {},
     isSearchVisible: false,
     isInputVisible: false,
-    loggedInContext: false,
-    handleLogoutContext: () => {},
-    handleLoginContext: () => {},
     handleSearchClick: () => {},
     handleUserIconClick: () => {},
 };
@@ -31,7 +25,6 @@ const initialUserContext: UserContextType = {
 const UserContext = createContext<UserContextType>(initialUserContext);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-    const [loggedInContext, setLoggedInContext] = useState<boolean>(false)
     const [isInputVisible, setInputVisible] = useState<boolean>(false);
     const [isSearchVisible, setIsSearchVisible] = useState<boolean>(false);
     const [isUserOptionsVisible, setIsUserOptionsVisible] = useState<boolean>(false);
@@ -46,20 +39,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         setIsUserOptionsVisible((prevState) => !prevState);
     };
 
-    const handleLogoutContext = () => {
-        setLoggedInContext(false)
-    }
-
-    const handleLoginContext = () => {
-        setLoggedInContext(true)
-    }
-
     return (
         <UserContext.Provider
             value={{
-                loggedInContext,
-                handleLogoutContext,
-                handleLoginContext,
                 isUserOptionsVisible,
                 setIsUserOptionsVisible,
                 isSearchVisible,

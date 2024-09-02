@@ -1,23 +1,19 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { LoginData, SignupData } from '../types/types'
-import { useUserContext } from '../useContext/userContext';
+import { useState, useEffect } from "react";
+import { LoginData, SignupData } from "../types/types";
 
-const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL
+const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL;
 
 export const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>('');
-  const [username, setUsername] = useState<string>('');
-  const { handleLoginContext } = useUserContext();
-  console.log(email)
-  const navigate = useNavigate();
+  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  console.log(email);
 
   useEffect(() => {
     const checkUserCookie = async () => {
       try {
         const response = await fetch(`${BACKEND_URL}/users/check-logged-in`, {
-          credentials: 'include'
+          credentials: "include",
         });
         const data = await response.json();
         if (response.ok) {
@@ -35,20 +31,23 @@ export const useAuth = () => {
   const handleLogin = async (formData: LoginData, rememberMe: boolean): Promise<boolean> => {
     try {
       const response = await fetch(`${BACKEND_URL}/users/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-type': 'application/json'
+          "Content-type": "application/json",
         },
-        body: JSON.stringify({ email: formData.email, password: formData.password, rememberMe }),
-        credentials: 'include'
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          rememberMe,
+        }),
+        credentials: "include", // Crucial for including cookies
       });
       const data = await response.json();
       if (response.ok) {
-        setLoggedIn(data.loggedIn);
-        handleLoginContext(true);
+        setLoggedIn(true);
         setEmail(data.email);
         setUsername(data.username);
-  
+
         return true; // Return true if login is successful
       } else {
         alert(data.message);
@@ -60,44 +59,46 @@ export const useAuth = () => {
     }
   };
 
-  const handleSignup = async (formData: SignupData): Promise<boolean> => {
-    console.log('Signup form data:', formData);
+  const handleSignup = async (formData: SignupData)  => {
+    console.log("Signup form data:", formData);
     try {
       const response = await fetch(`${BACKEND_URL}/users/signup`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-type': 'application/json'
+          "Content-type": "application/json",
         },
-        body: JSON.stringify({ username: formData.username, email: formData.email, password: formData.password }),
-        credentials: 'include'
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }),
+        credentials: "include",
       });
       const data = await response.json();
 
       if (response.ok) {
         setEmail(data.email);
-        setLoggedIn(data.loggedIn);
-        handleLoginContext(true)
+        setLoggedIn(true);
         setUsername(data.username);
-        return true; 
+        return true;
       } else {
         alert(data.message);
-        return false; 
+        return false;
       }
     } catch (err) {
       console.error(err);
-      return false; 
+      return false;
     }
   };
 
   const handleLogout = async () => {
     const response = await fetch(`${BACKEND_URL}/users/logout`, {
-      credentials: 'include'
+      credentials: "include",
     });
     const data = await response.json();
-    setEmail('');
-    setUsername('');
+    setEmail("");
+    setUsername("");
     setLoggedIn(data.loggedIn);
-    navigate('/login');
   };
 
   return { loggedIn, username, handleLogin, handleSignup, handleLogout };
