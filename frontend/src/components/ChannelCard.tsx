@@ -7,7 +7,7 @@ type ChannelCardProps = {
     channelDetail: searchData
     marginTop?: string
     maxWidth?: string
-    disabled: boolean
+    disabled?: boolean
 };
 
 const ChannelCard = ({ channelDetail, marginTop, maxWidth, disabled }: ChannelCardProps) => {
