@@ -47,7 +47,6 @@ export const useAuth = () => {
         setLoggedIn(true);
         setEmail(data.email);
         setUsername(data.username);
-
         return true; // Return true if login is successful
       } else {
         alert(data.message);

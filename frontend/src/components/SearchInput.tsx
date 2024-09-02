@@ -4,9 +4,11 @@ import { FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import userIcon from '/assets/user.png'
 import { useUserContext } from '../useContext/userContext'
+import { useAuth } from '../hooks/useAuth'
 
 const SearchInput = () => {
-  const { isInputVisible, isSearchVisible, isUserOptionsVisible, handleSearchClick, handleUserIconClick, loggedInContext, handleLogoutContext } = useUserContext();
+  const { isInputVisible, isSearchVisible, isUserOptionsVisible, handleSearchClick, handleUserIconClick } = useUserContext();
+  const { loggedIn, handleLogout } = useAuth()
   const [searchTerm, setSearchTerm] = useState<string>('')
   const navigate = useNavigate()
 
@@ -67,8 +69,8 @@ const SearchInput = () => {
           {isUserOptionsVisible && (
             <div className={`login-container shadow-login bg-white text-center mt-3 540:hidden
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
-              {loggedInContext ? (
-                <button onClick={handleLogoutContext} className='text-red font-medium'>
+              {loggedIn ? (
+                <button onClick={handleLogout} className='text-red font-medium'>
                   Logout
                 </button>
               ) : (

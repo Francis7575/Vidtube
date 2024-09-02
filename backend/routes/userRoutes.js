@@ -38,13 +38,18 @@ router.post('/login', async (req, res) => {
 
 		if (isMatch) {
 			// Set the cookie with expiration based on rememberMe flag
-			const maxAge = rememberMe ? 60000 * 60 * 24 * 30 : 0; // 30 days or session cookie
-			res.cookie('email', user.email, {
-				maxAge: maxAge,
-				httpOnly: true, // Secure the cookie
-				sameSite: 'Strict', // Adjust based on your requirements
-			});
-
+			if (rememberMe) {
+				res.cookie('email', user.email, {
+					maxAge: 60000 * 60 * 24 * 30, // 30 days
+					httpOnly: true,
+					sameSite: 'Strict',
+				});
+			} else {
+				res.cookie('email', user.email, {
+					httpOnly: true,
+					sameSite: 'Strict',
+				});
+			}
 			res.status(200).json({
 				email,
 				username: user.username,
@@ -66,7 +71,7 @@ router.post('/login', async (req, res) => {
 router.post('/signup', (req, res) => {
 	const { username, email, password } = req.body
 	console.log(req.body)
-	// Check if the user exists in database
+	// Check if the user already exists 
 	const existingUser = getUserByEmail(email)
 	console.log('Existing user:', existingUser);
 	if (existingUser) {
