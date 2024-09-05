@@ -43,6 +43,7 @@ export const useAuth = () => {
         credentials: "include", // Crucial for including cookies
       });
       const data = await response.json();
+      console.log('Login data:', data)
       if (response.ok) {
         setLoggedIn(true);
         setEmail(data.email);
