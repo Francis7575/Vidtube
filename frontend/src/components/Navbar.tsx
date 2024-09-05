@@ -23,23 +23,26 @@ const Navbar = () => {
                             alt="User" />
                     </button>
                     <div className='relative'>
-                        <div className={`login-container shadow-login bg-white text-center mt-3
+                        {isUserOptionsVisible && (
+                            <div className={`login-container shadow-login bg-white text-center mt-3
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
-                            {loggedIn ? (
-                                <button onClick={handleLogout} className='text-red font-medium'>
-                                    Logout
-                                </button>
-                            ) : (
-                                <>
-                                    <Link to="/login" className='text-red font-medium'>
-                                        Login
-                                    </Link>
-                                    <Link to="/signup" className='text-red font-medium'>
-                                        Signup
-                                    </Link>
-                                </>
-                            )}
-                        </div>
+                                {loggedIn ? (
+                                    <button onClick={handleLogout} className='text-red font-medium'>
+                                        Logout
+                                    </button>
+                                ) : (
+                                    <>
+                                        <Link to="/login" className='text-red font-medium'>
+                                            Login
+                                        </Link>
+                                        <Link to="/signup" className='text-red font-medium'>
+                                            Signup
+                                        </Link>
+                                    </>
+                                )}
+                            </div>
+                        )}
+
                     </div>
                 </div>
             </nav>
