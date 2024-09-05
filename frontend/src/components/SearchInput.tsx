@@ -66,25 +66,23 @@ const SearchInput = () => {
               alt="Search Icon"
             />
           </button>
-          {isUserOptionsVisible && (
-            <div className={`login-container shadow-login bg-white text-center mt-3 540:hidden
+          <div className={`login-container shadow-login bg-white text-center mt-3 540:hidden
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
-              {loggedIn ? (
-                <button onClick={handleLogout} className='text-red font-medium'>
-                  Logout
-                </button>
-              ) : (
-                <>
-                  <Link to="/login" className='text-red font-medium'>
-                    Login
-                  </Link>
-                  <Link to="/signup" className='text-red font-medium'>
-                    Signup
-                  </Link>
-                </>
-              )}
-            </div>
-          )}
+            {loggedIn ? (
+              <button onClick={handleLogout} className='text-red font-medium'>
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to="/login" className='text-red font-medium'>
+                  Login
+                </Link>
+                <Link to="/signup" className='text-red font-medium'>
+                  Signup
+                </Link>
+              </>
+            )}
+          </div>
           <button
             onClick={handleUserIconClick}
             className='max-w-[1.4rem] ml-4 540:hidden'
