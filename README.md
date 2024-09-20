@@ -17,5 +17,5 @@
 <h2 className="underline">Explore the project</h2>
 <p>
   For a deeper dive into the project and its features, visit the 
-<a href="https://vidtube-1.onrender.com/">project page.</a>
+<a href="https://vidtube-1k5m.onrender.com">project page.</a>
 </p>
