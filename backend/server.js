@@ -32,6 +32,16 @@ app.get('/', (req, res) => {
     res.status(200).send('Server is up!')
 })
 
+// Added on cron-job to ping the server every 10 mins to avoid the server sleep on render for inactivity
+app.get("/server-alive", (req, res) => {
+    try {
+        res.status(200).send("Test route working");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Something went wrong");
+    }
+});
+
 app.listen(process.env.BACKEND_PORT, () => {
     console.log(`Server is running on port ${process.env.BACKEND_PORT}...`)
 })
