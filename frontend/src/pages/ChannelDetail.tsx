@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { fetchApi } from '../utils/fetchApi'
 import { Videos, ChannelCard } from '../components'
 import { searchData } from '../types/types'
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 const ChannelDetail = () => {
   const [channelDetail, setChannelDetail] = useState<searchData | null>(null)
@@ -45,8 +46,14 @@ const ChannelDetail = () => {
           )}
         </div>
       )}
-      <div className='px-[2rem] lg:px-[5rem] mt-[4rem]'>
-        <Videos videos={videos} className='grid-cols-dynamic' />
+      <div className='px-[2rem] lg:px-[5.5rem] mt-[4rem]'>
+        <Link to="/" className='bg-dark-blue flex items-center justify-between max-w-[220px] text-white uppercase rounded-xl hover:opacity-80 py-2 pl-4 pr-2'>
+          <span className='mr-4'>Go Back to Home</span>
+          <KeyboardDoubleArrowLeftIcon />
+        </Link>
+        <div className='mt-4'>
+          <Videos videos={videos} className='grid-cols-dynamic' />
+        </div>
       </div>
     </div>
   )

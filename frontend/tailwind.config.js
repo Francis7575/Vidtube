@@ -24,6 +24,9 @@ export default {
       },
       boxShadow: {
         'login': '0px 10px 10px 0px rgba(0, 0, 0, 0.15)',
+      },
+      backgroundImage: {
+        'dark-blue': 'linear-gradient(90deg, #425b83, #2b3d71, #1e2c52)'
       }
     },
   },

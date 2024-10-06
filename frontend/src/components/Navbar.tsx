@@ -3,18 +3,36 @@ import userIcon from '/assets/user.png'
 import { Link } from 'react-router-dom'
 import { useUserContext } from '../useContext/userContext'
 import { useAuth } from '../hooks/useAuth'
-import { useClickOutside } from '../hooks/useClickOutside'
-import { MouseEvent } from 'react'
+import { useEffect, useRef } from 'react'
 
 const Navbar = () => {
-	const { isSearchVisible, isUserOptionsVisible, handleUserIconClick } = useUserContext();
+	const { isSearchVisible, isUserOptionsVisible, handleUserIconClick, setIsUserOptionsVisible } = useUserContext();
 	const { loggedIn, handleLogout } = useAuth()
-	const authRef = useClickOutside();
+  const authRef = useRef<HTMLButtonElement>(null); 
 
-	const handleContainerClick = (e: MouseEvent<HTMLDivElement>) => {
-		console.log('Container clicked', e);
+	const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		e.stopPropagation();
 	};
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (authRef.current && !authRef.current.contains(event.target as Node)) {
+				const authContainer = document.getElementById("auth-container");
+				if (authContainer && authContainer.contains(event.target as Node)) {
+					return; // If the click is on the cart button, do nothing
+				}
+				setIsUserOptionsVisible(false);
+			}
+		};
+
+		if (isUserOptionsVisible) {
+			document.addEventListener('mousedown', handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isUserOptionsVisible, setIsUserOptionsVisible])
 
 	return (
 		<div className='w-full fixed top-0 left-0 right-0 z-50 shadow-md bg-white px-4 pt-4 pb-4'>

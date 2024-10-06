@@ -16,7 +16,7 @@ const Videos = ({ videos, className }: VideosProps) => {
 	const videoItems = videos.filter(item => item.id.videoId);
 	const filteredVideoItems = videoItems.filter((_, index) => index !== 2 && index !== 15);
 	return (
-		<div className={`px-4 gap-4 grid ${className}`}>
+		<div className={` gap-4 grid ${className}`}>
 			{channelItem && (
 				<div className="mb-5">
 					<ChannelCard channelDetail={channelItem} />
