@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchApi } from '../utils/fetchApi'
-import { Videos, SearchInput } from '../components'
+import { Videos } from '../components'
 import { searchData } from '../types/types'
 import { useUserContext } from '../useContext/userContext'
 

@@ -1,12 +1,13 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-import { SignupData, SignupProps } from "../types/types"
+import { SignupData } from "../types/types"
 import youtubeIcon from '/assets/icon-youtube.png'
 import { Link, useNavigate } from 'react-router-dom'
 import userIcon from '/assets/icon-user.png'
 import emailIcon from '/assets/icon-email.png'
 import passwordIcon from '/assets/icon-lock.png'
+import { useAuth } from "../hooks/useAuth"
 
-const Signup = ({ onSignup }: SignupProps) => {
+const Signup = () => {
     const [formData, setFormData] = useState<SignupData>({
         username: '',
         email: '',
@@ -18,6 +19,7 @@ const Signup = ({ onSignup }: SignupProps) => {
         email: '',
         password: ''
     });
+    const { handleSignup } = useAuth();
     const navigate = useNavigate();
     const InputFields = [
         { type: 'text', name: 'username', id: 'username', placeholder: 'Enter username', label: 'Username', icon: userIcon },
@@ -50,7 +52,7 @@ const Signup = ({ onSignup }: SignupProps) => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         validateForm()
-        const result = await onSignup(formData);
+        const result = await handleSignup(formData);
         if (result) {
             navigate('/');
         }

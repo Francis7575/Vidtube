@@ -12,19 +12,11 @@ export type LoginData = {
     [key: string]: string | number;
 }
 
-export type LoginProps = {
-    onLogin: (data: LoginData, rememberMe: boolean) => Promise<boolean>
-}
-
 export type SignupData = {
     username: string,
     email: string,
     password: string,
     [key: string]: string | number
-}
-
-export type SignupProps = {
-    onSignup: (data: SignupData) => Promise<boolean>
 }
 
 export type HomeProps = {
@@ -65,3 +57,9 @@ export type SidebarProps = {
     setSelectedCategory?: (data: string) => void
 }
 
+export type IRouterType = {
+    title: string;
+    path?: string;
+    element: JSX.Element;
+    children?: IRouterType[];
+  }
