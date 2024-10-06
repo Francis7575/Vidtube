@@ -4,9 +4,10 @@ type UserContextType = {
     isUserOptionsVisible: boolean;
     setIsUserOptionsVisible: (visible: boolean) => void;
     isSearchVisible: boolean;
-    isInputVisible: boolean;
     handleSearchClick: () => void;
     handleUserIconClick: () => void;
+    selectedCategory: string;
+    setSelectedCategory: (category: string) => void;
 };
 
 type UserProviderProps = {
@@ -15,24 +16,23 @@ type UserProviderProps = {
 
 const initialUserContext: UserContextType = {
     isUserOptionsVisible: false,
-    setIsUserOptionsVisible: () => {},
+    setIsUserOptionsVisible: () => { },
     isSearchVisible: false,
-    isInputVisible: false,
-    handleSearchClick: () => {},
-    handleUserIconClick: () => {},
+    handleSearchClick: () => { },
+    handleUserIconClick: () => { },
+    selectedCategory: 'New',
+    setSelectedCategory: () => { },
 };
 
 const UserContext = createContext<UserContextType>(initialUserContext);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-    const [isInputVisible, setInputVisible] = useState<boolean>(false);
     const [isSearchVisible, setIsSearchVisible] = useState<boolean>(false);
     const [isUserOptionsVisible, setIsUserOptionsVisible] = useState<boolean>(false);
+    const [selectedCategory, setSelectedCategory] = useState<string>('New')
 
     const handleSearchClick = () => {
-        setInputVisible(true);
         setIsSearchVisible(true);
-        setIsUserOptionsVisible(false); // Hide user options when search is active
     };
 
     const handleUserIconClick = () => {
@@ -45,9 +45,10 @@ export const UserProvider = ({ children }: UserProviderProps) => {
                 isUserOptionsVisible,
                 setIsUserOptionsVisible,
                 isSearchVisible,
-                isInputVisible,
                 handleSearchClick,
                 handleUserIconClick,
+                selectedCategory,
+                setSelectedCategory
             }}
         >
             {children}

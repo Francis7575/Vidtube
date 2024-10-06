@@ -7,7 +7,6 @@ export const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
-  console.log(email);
 
   useEffect(() => {
     const checkUserCookie = async () => {
@@ -101,5 +100,5 @@ export const useAuth = () => {
     setLoggedIn(data.loggedIn);
   };
 
-  return { loggedIn, username, handleLogin, handleSignup, handleLogout };
+  return { loggedIn, email, username, handleLogin, handleSignup, handleLogout };
 };

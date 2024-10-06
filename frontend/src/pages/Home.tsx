@@ -1,13 +1,12 @@
-import { Navbar, Feed } from "../components"
+import { Feed } from "../components"
 
 const Home = () => {
 
-    return (
-        <>
-            <Navbar />
-            <Feed />
-        </>
-    )
+	return (
+		<>
+			<Feed />
+		</>
+	)
 }
 
 export default Home

@@ -1,14 +1,3 @@
-export type CommonProps = {
-    onSearchClick?: () => void;
-    isInputVisible?: boolean;
-    isSearchVisible?: boolean;
-    onUserIconClick?: () => void;
-    isUserOptionsVisible?: boolean;
-    onLogout?: () => void;
-    loggedIn?: boolean;
-    username?: string;
-};
-
 export type NavbarProps = {
     onLogout?: () => void;
     loggedIn?: boolean;

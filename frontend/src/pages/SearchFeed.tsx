@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { fetchApi } from '../utils/fetchApi'
-import { Videos, Navbar, Sidebar } from '../components'
+import { Videos, Sidebar, SearchInput } from '../components'
 import { searchData } from '../types/types'
 
 const SearchFeed = () => {
@@ -22,7 +22,7 @@ const SearchFeed = () => {
 
 	return (
 		<>
-			<Navbar />
+		<SearchInput />
 			<div className='flex flex-col md:flex-row'>
 				<Sidebar
 					selectedCategory={selectedCategory}

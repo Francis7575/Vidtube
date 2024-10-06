@@ -1,4 +1,5 @@
 export { default as Navbar } from './Navbar'
+export { default as Layout } from './Layout'
 export { default as Logo } from './Logo'
 export { default as Feed } from './Feed'
 export { default as Videos } from './Videos'
