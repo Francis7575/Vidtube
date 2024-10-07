@@ -1,5 +1,5 @@
 # Vidtube
-
+![Alt text](./client/public/image-vidtube.png)
 <h2 className="underline">Overview</h2>
 <p>A Video Player project utilizing the YouTube API from RapidAPI, featuring user authentication with basic login and signup functionality, it contains the following features:</p>
 
