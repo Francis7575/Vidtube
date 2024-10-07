@@ -47,11 +47,11 @@ const ChannelDetail = () => {
         </div>
       )}
       <div className='px-[2rem] lg:px-[5.5rem] mt-[4rem]'>
-        <Link to="/" className='bg-dark-blue flex items-center justify-between max-w-[220px] text-white uppercase rounded-xl hover:opacity-80 py-2 pl-4 pr-2'>
-          <span className='mr-4'>Go Back to Home</span>
-          <KeyboardDoubleArrowLeftIcon />
+        <Link to="/" className='bg-dark-blue flex items-center justify-between max-w-[200px] md:max-w-[220px] text-white uppercase rounded-xl hover:opacity-80 py-2 pl-2 pr-2 md:pl-4 md:pr-2'>
+          <span className='mr-4 align-middle'>Go Back to Home</span>
+          <span><KeyboardDoubleArrowLeftIcon /></span>
         </Link>
-        <div className='mt-4'>
+        <div className='mt-6'>
           <Videos videos={videos} className='grid-cols-dynamic' />
         </div>
       </div>

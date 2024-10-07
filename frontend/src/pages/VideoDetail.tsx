@@ -27,8 +27,8 @@ const VideoDetail = () => {
 		<>
 			<Navbar />
 			<section>
-				<div className='900:flex mt-[3.2rem] lg:mt-[3.75rem]'>
-					<div className='900:flex-2 w-full'>
+				<div className='900:flex 900:gap-6 mt-[3.9rem] lg:mt-[3.75rem]'>
+					<div className='900:flex-2 w-full 900:pl-8'>
 						<ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} className="react-player" controls />
 						<div className='pl-4 mt-3 mb-7'>
 							<h2 className='text-[1.15rem] lg:text-[1.4rem] font-bold'>
@@ -48,7 +48,7 @@ const VideoDetail = () => {
 							</div>
 						</div>
 					</div>
-					<div>
+					<div className='900:pr-8 px-4 900:pl-0'>
 						<Videos videos={videos} className="grid-cols-videodetail" />
 					</div>
 				</div>
