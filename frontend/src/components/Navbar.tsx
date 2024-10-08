@@ -5,6 +5,9 @@ import { useUserContext } from '../context/Context'
 import { useEffect, useRef } from 'react'
 import { useAuth } from '../context/userContext'
 import toast from 'react-hot-toast'
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL;
 
@@ -14,23 +17,23 @@ const Navbar = () => {
 	const auth = useAuth()
 	const navigate = useNavigate()
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch(`${BACKEND_URL}/users/logout`, {
-        method: "GET",
-        headers: { 'Content-Type': "application/json" },
-        credentials: "include"
-      })
-      const data = await response.json();
-      console.log(data)
-      auth?.setIsLoggedIn(false)
-      toast.success("Succesfully Logged out", { id: "userLogout" });
-      navigate("/login")
-    } catch (error: unknown) {
-      console.error("Error logging out:", error);
-      toast.error("Unable to logout", { id: "userLogout" });
-    }
-  }
+	const handleLogout = async () => {
+		try {
+			const response = await fetch(`${BACKEND_URL}/users/logout`, {
+				method: "GET",
+				headers: { 'Content-Type': "application/json" },
+				credentials: "include"
+			})
+			const data = await response.json();
+			console.log(data)
+			auth?.setIsLoggedIn(false)
+			toast.success("Succesfully Logged out", { id: "userLogout" });
+			navigate("/login")
+		} catch (error: unknown) {
+			console.error("Error logging out:", error);
+			toast.error("Unable to logout", { id: "userLogout" });
+		}
+	}
 
 	const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		e.stopPropagation();
@@ -77,19 +80,28 @@ const Navbar = () => {
 							<div
 								onClick={handleContainerClick}
 								id="auth-container"
-								className={`login-container shadow-login bg-white text-center mt-3 
+								className={`login-container shadow-login bg-white w-[150px] py-4 text-center mt-3 
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
 								{auth?.isLoggedIn ? (
-									<button onClick={handleLogout} className='text-red font-medium'>
-										Logout
-									</button>
+									<div className='flex justify-center gap-1 text-red'>
+										<LogoutIcon />
+										<button onClick={handleLogout} className=' font-medium hover:opacity-70'>
+											Logout
+										</button>
+									</div>
 								) : (
-									<div className='flex flex-col items-center'>
-										<Link to="/login" className='text-red font-medium hover:opacity-70'>
-											Login
+									<div className='flex flex-col items-center text-red font-medium '>
+										<Link to="/login" className='hover:opacity-70'>
+											<div>
+												<span className='mr-1'><LoginIcon /></span>
+												<span>Login</span>
+											</div>
 										</Link>
-										<Link to="/signup" className='text-red font-medium hover:opacity-70'>
-											Signup
+										<Link to="/signup" className='hover:opacity-70'>
+											<div>
+												<span><HowToRegIcon /></span>
+												<span>Signup</span>
+											</div>
 										</Link>
 									</div>
 								)}
