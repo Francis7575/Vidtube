@@ -9,7 +9,7 @@ const Navbar = () => {
 	const { isSearchVisible, isUserOptionsVisible, handleUserIconClick, setIsUserOptionsVisible } = useUserContext();
 	const { loggedIn, handleLogout } = useAuth()
   const authRef = useRef<HTMLButtonElement>(null); 
-
+	
 	const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		e.stopPropagation();
 	};
