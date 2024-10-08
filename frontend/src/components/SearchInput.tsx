@@ -1,7 +1,7 @@
 import iconSearch from '/assets/icon-search.png'
 import { useNavigate } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
-import { useUserContext } from '../useContext/userContext'
+import { useUserContext } from '../context/Context'
 
 const SearchInput = () => {
   const { handleSearchClick } = useUserContext();

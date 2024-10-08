@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
 
-type UserContextType = {
+type ContextType = {
     isUserOptionsVisible: boolean;
     setIsUserOptionsVisible: (visible: boolean) => void;
     isSearchVisible: boolean;
@@ -10,11 +10,11 @@ type UserContextType = {
     setSelectedCategory: (category: string) => void;
 };
 
-type UserProviderProps = {
+type ContextProviderProps = {
     children: ReactNode;
 };
 
-const initialUserContext: UserContextType = {
+const initialUserContext: ContextType = {
     isUserOptionsVisible: false,
     setIsUserOptionsVisible: () => { },
     isSearchVisible: false,
@@ -24,9 +24,9 @@ const initialUserContext: UserContextType = {
     setSelectedCategory: () => { },
 };
 
-const UserContext = createContext<UserContextType>(initialUserContext);
+const Context = createContext<ContextType>(initialUserContext);
 
-export const UserProvider = ({ children }: UserProviderProps) => {
+export const ContextProvider = ({ children }: ContextProviderProps) => {
     const [isSearchVisible, setIsSearchVisible] = useState<boolean>(false);
     const [isUserOptionsVisible, setIsUserOptionsVisible] = useState<boolean>(false);
     const [selectedCategory, setSelectedCategory] = useState<string>('New')
@@ -40,7 +40,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     };
 
     return (
-        <UserContext.Provider
+        <Context.Provider
             value={{
                 isUserOptionsVisible,
                 setIsUserOptionsVisible,
@@ -52,8 +52,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             }}
         >
             {children}
-        </UserContext.Provider>
+        </Context.Provider>
     );
 };
 
-export const useUserContext = () => useContext(UserContext);
+export const useUserContext = () => useContext(Context);

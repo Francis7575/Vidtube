@@ -22,7 +22,7 @@ const verifyUser = async (
     }
     res
       .status(200)
-      .json({ message: "OK", username: user!.username, email: user!.email });
+      .json({ message: "User is already logged in", username: user!.username, email: user!.email });
   } catch (error: unknown) {
     console.log(error);
     res.status(200).json({ message: "Error verifying user" });
@@ -39,7 +39,7 @@ const userSignup = async (
     const { username, email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(401).send("User already registered");
+      res.status(409).send("User already registered");
       return;
     }
     const hashedPassword = await hash(password, 10);
@@ -148,7 +148,7 @@ const userLogout = async (
 
     res
       .status(200)
-      .json({ message: "OK", username: user.username, email: user.email });
+      .json({ message: "User logged out..", username: user.username, email: user.email });
   } catch (error: any) {
     res.status(200).json({ message: "ERROR", cause: error.message });
     console.log(error);

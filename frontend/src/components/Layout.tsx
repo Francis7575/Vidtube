@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import { Navbar, Sidebar } from './index'
-import { useUserContext } from "../useContext/userContext"
+import { useUserContext } from "../context/Context"
 import { useEffect, useState } from "react"
 
 const Layout = () => {
@@ -8,7 +8,7 @@ const Layout = () => {
   const [isHomeRoute, setIsHomeRoute] = useState<boolean>(true)
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   useEffect(() => {
     if (location.pathname === '/') {
       setIsHomeRoute(true);

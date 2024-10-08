@@ -1,13 +1,18 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { UserProvider } from './useContext/userContext.tsx'
+import { ContextProvider } from './context/Context.tsx'
+import { UserProvider } from './context/userContext.tsx'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Router>
     <UserProvider>
-      <App />
+      <ContextProvider>
+        <Toaster position='top-right' />
+        <App />
+      </ContextProvider>
     </UserProvider>
   </Router>
 )

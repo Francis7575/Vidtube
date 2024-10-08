@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { fetchApi } from '../utils/fetchApi'
 import { Videos } from '../components'
 import { searchData } from '../types/types'
-import { useUserContext } from '../useContext/userContext'
+import { useUserContext } from '../context/Context'
 
 const SearchFeed = () => {
 	const [videos, setVideos] = useState<searchData[]>([])

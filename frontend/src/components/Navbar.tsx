@@ -1,15 +1,37 @@
 import { SearchInput, Logo } from '../components'
 import userIcon from '/assets/user.png'
-import { Link } from 'react-router-dom'
-import { useUserContext } from '../useContext/userContext'
-import { useAuth } from '../hooks/useAuth'
+import { Link, useNavigate } from 'react-router-dom'
+import { useUserContext } from '../context/Context'
 import { useEffect, useRef } from 'react'
+import { useAuth } from '../context/userContext'
+import toast from 'react-hot-toast'
+
+const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL;
 
 const Navbar = () => {
 	const { isSearchVisible, isUserOptionsVisible, handleUserIconClick, setIsUserOptionsVisible } = useUserContext();
-	const { loggedIn, handleLogout } = useAuth()
-  const authRef = useRef<HTMLButtonElement>(null); 
-	
+	const authRef = useRef<HTMLButtonElement>(null);
+	const auth = useAuth()
+	const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/users/logout`, {
+        method: "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include"
+      })
+      const data = await response.json();
+      console.log(data)
+      auth?.setIsLoggedIn(false)
+      toast.success("Succesfully Logged out", { id: "userLogout" });
+      navigate("/login")
+    } catch (error: unknown) {
+      console.error("Error logging out:", error);
+      toast.error("Unable to logout", { id: "userLogout" });
+    }
+  }
+
 	const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		e.stopPropagation();
 	};
@@ -57,7 +79,7 @@ const Navbar = () => {
 								id="auth-container"
 								className={`login-container shadow-login bg-white text-center mt-3 
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
-								{loggedIn ? (
+								{auth?.isLoggedIn ? (
 									<button onClick={handleLogout} className='text-red font-medium'>
 										Logout
 									</button>
