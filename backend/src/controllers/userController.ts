@@ -13,6 +13,7 @@ const verifyUser = async (
 ): Promise<void> => {
   try {
     //user token check
+    console.log(req.cookies)
     const user = await User.findById(res.locals.jwtData.id);
     if (!user) {
       res.status(401).send("User not registered OR Token malfunctioned");
@@ -81,7 +82,7 @@ const userLogin = async (
 ): Promise<void> => {
   try {
     //user login
-    const { email, password } = req.body;
+    const { email, password, rememberMe } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
       res.status(401).send("User not registered");
@@ -102,13 +103,20 @@ const userLogin = async (
 
     const token = createToken(user._id.toString(), user.email, "7d");
     const expires = new Date();
-    expires.setDate(expires.getDate() + 7);
+    if (rememberMe) {
+      // RememberMe is true, set cookie to expire in 30 days
+      expires.setDate(expires.getDate() + 30);
+    } else {
+      // Otherwise, expire in 7 days (or session-based if no expiration)
+      expires.setDate(expires.getDate() + 7);
+    }
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
       sameSite: isProduction ? "none" : "strict",
       secure: isProduction ? true : false,
-      signed: true,
-      expires,
+      signed: true, 
+      expires, 
+      maxAge: rememberMe ? 60000 * 60 * 24 * 30 : undefined, // 30 days if rememberMe is true
     });
 
     res.status(200).json({
