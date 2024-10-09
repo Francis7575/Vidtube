@@ -13,7 +13,6 @@ const verifyUser = async (
 ): Promise<void> => {
   try {
     //user token check
-    console.log(req.cookies)
     const user = await User.findById(res.locals.jwtData.id);
     if (!user) {
       res.status(401).send("User not registered OR Token malfunctioned");
@@ -21,9 +20,11 @@ const verifyUser = async (
     if (user!._id.toString() !== res.locals.jwtData.id) {
       res.status(401).send("Permissions didn't match");
     }
-    res
-      .status(200)
-      .json({ message: "User is already logged in", username: user!.username, email: user!.email });
+    res.status(200).json({
+      message: "User is already logged in",
+      username: user!.username,
+      email: user!.email,
+    });
   } catch (error: unknown) {
     console.log(error);
     res.status(200).json({ message: "Error verifying user" });
@@ -58,6 +59,7 @@ const userSignup = async (
     const token = createToken(user._id.toString(), user.email, "7d");
     const expires = new Date();
     expires.setDate(expires.getDate() + 7);
+
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
       sameSite: isProduction ? "none" : "strict",
@@ -66,9 +68,12 @@ const userSignup = async (
       expires,
     });
 
-    res
-      .status(201)
-      .json({ message: "User has being created", id: user._id.toString() });
+    res.status(201).json({
+      message: "User has being created",
+      username: user.username,
+      email: user.email,
+      id: user._id.toString(),
+    });
   } catch (error: unknown) {
     console.log(error);
     res.status(500).json({ message: "Unable to create the user" });
@@ -103,19 +108,17 @@ const userLogin = async (
 
     const token = createToken(user._id.toString(), user.email, "7d");
     const expires = new Date();
+    expires.setDate(expires.getDate() + 7);
     if (rememberMe) {
       // RememberMe is true, set cookie to expire in 30 days
       expires.setDate(expires.getDate() + 30);
-    } else {
-      // Otherwise, expire in 7 days (or session-based if no expiration)
-      expires.setDate(expires.getDate() + 7);
     }
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
       sameSite: isProduction ? "none" : "strict",
       secure: isProduction ? true : false,
-      signed: true, 
-      expires, 
+      signed: true,
+      expires,
       maxAge: rememberMe ? 60000 * 60 * 24 * 30 : undefined, // 30 days if rememberMe is true
     });
 
@@ -154,9 +157,11 @@ const userLogout = async (
       signed: true,
     });
 
-    res
-      .status(200)
-      .json({ message: "User logged out..", username: user.username, email: user.email });
+    res.status(200).json({
+      message: "User logged out..",
+      username: user.username,
+      email: user.email,
+    });
   } catch (error: any) {
     res.status(200).json({ message: "ERROR", cause: error.message });
     console.log(error);
