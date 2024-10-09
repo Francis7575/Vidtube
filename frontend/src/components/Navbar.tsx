@@ -1,6 +1,6 @@
 import { SearchInput, Logo } from '../components'
 import userIcon from '/assets/user.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useUserContext } from '../context/Context'
 import { useEffect, useRef } from 'react'
 import { useAuth } from '../context/userContext'
@@ -8,6 +8,7 @@ import toast from 'react-hot-toast'
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import PersonIcon from '@mui/icons-material/Person';
 
 const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL;
 
@@ -15,7 +16,6 @@ const Navbar = () => {
 	const { isSearchVisible, isUserOptionsVisible, handleUserIconClick, setIsUserOptionsVisible } = useUserContext();
 	const authRef = useRef<HTMLButtonElement>(null);
 	const auth = useAuth()
-	const navigate = useNavigate()
 
 	const handleLogout = async () => {
 		try {
@@ -28,7 +28,6 @@ const Navbar = () => {
 			console.log(data)
 			auth?.setIsLoggedIn(false)
 			toast.success("Succesfully Logged out", { id: "userLogout" });
-			navigate("/login")
 		} catch (error: unknown) {
 			console.error("Error logging out:", error);
 			toast.error("Unable to logout", { id: "userLogout" });
@@ -80,17 +79,25 @@ const Navbar = () => {
 							<div
 								onClick={handleContainerClick}
 								id="auth-container"
-								className={`login-container shadow-login bg-white w-[150px] py-4 text-center mt-3 
+								className={`login-container shadow-login bg-white w-[150px] py-4 md:mt-3 
                             ${isSearchVisible ? 'mt-2' : 'mt-0'}`}>
 								{auth?.isLoggedIn ? (
-									<div className='flex justify-center gap-1 text-red'>
-										<LogoutIcon />
-										<button onClick={handleLogout} className=' font-medium hover:opacity-70'>
-											Logout
-										</button>
-									</div>
+									<>
+										<div className='mb-4 flex items-center'>
+											<PersonIcon />
+											<span className='ml-1 underline'>
+												{auth?.user?.username}
+											</span>
+										</div>
+										<div className='flex justify-center gap-1 text-red'>
+											<LogoutIcon />
+											<button onClick={handleLogout} className=' font-medium hover:opacity-70'>
+												Logout
+											</button>
+										</div>
+									</>
 								) : (
-									<div className='flex flex-col items-center text-red font-medium '>
+									<div className='flex flex-col items-center gap-1 text-red font-medium '>
 										<Link to="/login" className='hover:opacity-70'>
 											<div>
 												<span className='mr-1'><LoginIcon /></span>

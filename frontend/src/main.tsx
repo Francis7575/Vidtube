@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <Router>
     <UserProvider>
       <ContextProvider>
-        <Toaster position='top-right' />
+        <Toaster position='bottom-right' />
         <App />
       </ContextProvider>
     </UserProvider>

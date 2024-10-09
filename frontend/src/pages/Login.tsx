@@ -19,13 +19,13 @@ const Login = () => {
 		email: '',
 		password: ''
 	});
-	const [rememberMe, setRememberMe] = useState<boolean>(false)
 	const auth = useAuth();
 
 	const handleLogin = async (formData: LoginData, rememberMe: boolean) => {
 		try {
 			const response = await fetch(`${BACKEND_URL}/users/login`, {
 				method: "POST",
+				credentials: "include", // Crucial for including cookies
 				headers: {
 					"Content-type": "application/json",
 				},
@@ -34,7 +34,6 @@ const Login = () => {
 					password: formData.password,
 					rememberMe,
 				}),
-				credentials: "include", // Crucial for including cookies
 			});
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
@@ -72,7 +71,8 @@ const Login = () => {
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		validateForm()
+		if (!validateForm()) return; // Prevent submission if form is invalid
+		const rememberMe = (e.target as HTMLFormElement).remember.checked;
 		const data = await handleLogin(formData, rememberMe)
 		if (data) {
 			auth?.setUser({ email: data.email, username: data.username });
@@ -96,9 +96,6 @@ const Login = () => {
 			...prevErrors,
 			[name]: ''
 		}));
-	}
-	const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
-		setRememberMe(e.target.checked)
 	}
 
 	return (
@@ -139,7 +136,7 @@ const Login = () => {
 					))}
 					<div className='flex justify-between items-center mt-3'>
 						<label htmlFor="remember" className='flex items-center'>
-							<input type="checkbox" name="remember" id="remember" checked={rememberMe} onChange={handleCheckBoxChange} />
+							<input type="checkbox" name="remember" id="remember"  />
 							<p className='ml-2'>Remember me</p>
 						</label>
 					</div>

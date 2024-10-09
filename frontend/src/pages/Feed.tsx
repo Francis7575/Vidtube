@@ -3,33 +3,10 @@ import { searchData } from "../types/types"
 import { Videos } from '../components'
 import { fetchApi } from '../utils/fetchApi'
 import { useUserContext } from '../context/Context'
-import { useAuth } from '../context/userContext'
-import toast from 'react-hot-toast'
 
 const Feed = () => {
 	const [videos, setVideos] = useState<searchData[]>([]);
 	const { selectedCategory } = useUserContext()
-	const auth = useAuth();
-
-	useEffect(() => {
-		const checkUserCookie = async () => {
-			try {
-				const response = await fetch(`${import.meta.env.BACKEND_URL}/users/check-logged-in`, {
-					method: "GET",
-					credentials: "include",
-				});
-				const data = await response.json();
-				if (data) {
-					auth?.setUser({ username: data.username, email: data.email, });
-					auth?.setIsLoggedIn(true);
-					toast.success("Already logged in!");
-				}
-			} catch (err) {
-        console.error("checkUserCookie error:", err);
-			}
-		};
-		checkUserCookie();
-	}, []);
 
 	useEffect(() => {
 		fetchApi(`search?q=${selectedCategory}&part=snippet`)
